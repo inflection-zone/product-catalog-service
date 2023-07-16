@@ -1,5 +1,6 @@
 import {Entity, Column, OneToOne, JoinColumn} from "typeorm"
 import {Merchant} from "./Merchant"
+import {Product} from "./Product"
 
 @Entity()
 export class Inventory{
@@ -19,9 +20,9 @@ export class Inventory{
     @Column()
     unitsOfMeasure : number
 
-    @OneToOne( () => ..)
+    @OneToOne( () => (Product))
     @JoinColumn()
-    productId : //
+    productId : Product
 
     @OneToOne( () => Merchant) //the other argument induces bidirectionality of relation
     @JoinColumn()

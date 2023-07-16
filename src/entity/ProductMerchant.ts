@@ -1,5 +1,6 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, ManyToOne} from "typeorm"
+import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, ManyToOne, OneToMany, OneToOne} from "typeorm"
 import { Merchant } from './Merchant'
+import { Product } from './Product'
 
 
 @Entity() 
@@ -17,8 +18,10 @@ export class ProductMerchant{
     @Column()
     shippingCharges: number
 
-    @ManyToOne(() => (Merchant))
-    merchantId: Merchant
+    @OneToMany(() => (Merchant), (product)=>product.merchantId)
+    merchantId: Merchant[]
 
-    //Product id many to many relationship pending
+    @OneToOne(() => (Product))
+    productId: Product
+    
 }
