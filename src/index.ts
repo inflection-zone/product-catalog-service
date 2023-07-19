@@ -1,9 +1,12 @@
-import { AppDataSource } from "./data-source"
-import { Customer } from "./entity/Customer"
+import { AppDataSource } from "./database/data-source"
+import { Customer } from "./models/Customer"
 
-AppDataSource.initialize().then(async () => {
-    const customer1 = new Customer()
-    console.log("new customer created")
+const main = async ()=>{
+    console.log("Hello")
+    
+    AppDataSource.initialize().then(async () => {
+    //const customer1 = new Customer()
+    console.log("Hello")
 
     // console.log("Inserting a new user into the database...")
     // const user = new Customer()
@@ -20,3 +23,7 @@ AppDataSource.initialize().then(async () => {
     // console.log("Here you can setup and run express / fastify / any other framework.")
 
 }).catch(error => console.log(error))
+
+}
+
+main()

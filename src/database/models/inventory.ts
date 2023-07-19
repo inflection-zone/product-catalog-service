@@ -1,6 +1,6 @@
 import {Entity, Column, OneToOne, JoinColumn} from "typeorm"
-import {Merchant} from "./Merchant"
-import {Product} from "./Product"
+import {Merchant} from "./merchant"
+import {Product} from "./product"
 
 @Entity()
 export class Inventory{

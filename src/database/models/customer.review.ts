@@ -1,6 +1,6 @@
-import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, ManyToOne, OneToMany, OneToOne} from "typeorm"
-import { Customer } from './Customer'
-import { Product } from './Product'
+import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, ManyToOne, OneToMany, OneToOne, BaseEntity} from "typeorm"
+import { Customer } from './customer'
+import { Product } from './product'
 
 
 @Entity() 

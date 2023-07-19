@@ -1,5 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm'
-import { Product } from './Product'
+import { Product } from './product'
 import {Url} from 'url'
 
 @Entity()

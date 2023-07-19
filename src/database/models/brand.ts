@@ -1,8 +1,8 @@
-import {Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import {Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm'
 import { Url } from 'url'
 
 @Entity()
-export class Brand{
+export class Brand {
 
     @PrimaryGeneratedColumn()
     id: number

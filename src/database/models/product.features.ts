@@ -1,6 +1,6 @@
 import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, OneToMany } from 'typeorm'
-import { Product} from "./Product"
-import {Feature} from "./Feature"
+import { Product} from "./product"
+import {Feature} from "./feature"
 
 @Entity()
 export class ProductFeatures{
