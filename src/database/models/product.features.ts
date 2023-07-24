@@ -1,11 +1,14 @@
-import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, OneToMany } from 'typeorm'
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from 'typeorm'
 import { Product} from "./product"
 import {Feature} from "./feature"
 
 @Entity()
 export class ProductFeatures{
 
-    @OneToOne(() => Product)
+    @PrimaryGeneratedColumn('uuid')
+    id: number
+
+    @ManyToOne(() => Product)
     @JoinColumn()
     productId: Product
 

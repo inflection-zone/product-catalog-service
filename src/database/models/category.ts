@@ -3,7 +3,7 @@ import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, BaseEntity } from 'ty
 @Entity()
 export class Category {
 
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('uuid')
     id: number
 
     @Column()

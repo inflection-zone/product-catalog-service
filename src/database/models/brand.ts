@@ -4,13 +4,13 @@ import { Url } from 'url'
 @Entity()
 export class Brand {
 
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('uuid')
     id: number
 
     @Column()
     name: string
 
     @Column()
-    logoUrl: Url
+    logoUrl: string
 
 }

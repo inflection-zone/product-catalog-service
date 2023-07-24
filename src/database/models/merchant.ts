@@ -4,7 +4,7 @@ import { Url} from "url"
 @Entity("merchants")
 export class Merchant {
 
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('uuid')
     merchantId : number
 
     @Column()
@@ -17,9 +17,9 @@ export class Merchant {
     averageRatings : number
 
     @Column()
-    merchantUrl : Url
+    merchantUrl : string
 
     @Column()
-    logo: Url
+    logo: string
     
 }

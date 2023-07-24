@@ -4,7 +4,7 @@ import { Url } from "url"
 @Entity()
 export class Customer {
 
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('uuid')
     customerId: number
 
     @Column()
@@ -20,6 +20,6 @@ export class Customer {
     email: string
 
     @Column()
-    profileImage: Url
+    profileImage: string
 
 }

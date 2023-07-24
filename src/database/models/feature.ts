@@ -4,7 +4,7 @@ import { Url } from 'url'
 @Entity()
 export class Feature{
 
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('uuid')
     id: number
 
     @Column()
@@ -14,6 +14,6 @@ export class Feature{
     description: string
 
     @Column()
-    imageUrl: Url
+    imageUrl: string
 
 }

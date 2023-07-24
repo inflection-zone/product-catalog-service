@@ -1,9 +1,11 @@
-import {Entity, Column, OneToOne, JoinColumn} from "typeorm"
+import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn} from "typeorm"
 import {Merchant} from "./merchant"
 import {Product} from "./product"
 
 @Entity()
 export class Inventory{
+    @PrimaryGeneratedColumn('uuid')
+    id: number
 
     @Column()
     batchNumber : number

@@ -6,7 +6,7 @@ import { Product } from './product'
 @Entity() 
 export class CustomerReview{
 
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('uuid')
     id : number
 
     @OneToOne(()=>Product)

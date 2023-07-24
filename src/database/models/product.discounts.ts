@@ -6,6 +6,9 @@ import { Product } from './product'
 @Entity() 
 export class ProductDiscounts{
 
+    @PrimaryGeneratedColumn('uuid')
+    id: number
+
     @OneToOne(()=>Product)
     productId: Product
 

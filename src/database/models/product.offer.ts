@@ -4,7 +4,7 @@ import {Product} from './product'
 @Entity()
 export class ProductOffer{
 
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('uuid')
     id: number
 
     @Column()

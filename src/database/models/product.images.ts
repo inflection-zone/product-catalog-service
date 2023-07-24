@@ -5,10 +5,13 @@ import {Url} from 'url'
 @Entity()
 export class ProductImages{
 
+    @PrimaryGeneratedColumn('uuid')
+    id: number
+
     @ManyToOne(()=>Product)
     productId: Product
 
     @Column()
-    imageUrl: Url
+    imageUrl: string
 
 }
