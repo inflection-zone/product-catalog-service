@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { Product } from './product';
+import { Product } from './product.model';
 
-@Entity()
+@Entity({name: 'brand'})
 export class Brand {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -9,6 +9,9 @@ export class Brand {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ type: "varchar", length: 255})
   logoUrl: string;
+
+  @OneToMany(()=> Product, (product) => product.brand)
+  products:Product[];
 }

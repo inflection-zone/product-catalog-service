@@ -1,20 +1,12 @@
-import { AppDataSource } from "./data-source"
 
+import dotenv from 'dotenv';
 
-AppDataSource.initialize().then(async () => {
+import Application from './app';
 
-    // console.log("Inserting a new user into the database...")
-    // const user = new User()
-    // user.firstName = "Timber"
-    // user.lastName = "Saw"
-    // user.age = 25
-    // await AppDataSource.manager.save(user)
-    // console.log("Saved a new user with id: " + user.id)
+dotenv.config();
 
-    // console.log("Loading users from the database...")
-    // const users = await AppDataSource.manager.find(User)
-    // console.log("Loaded users: ", users)
+(async()=> {
+    const app = Application.instance();
+    app.start();
+})();
 
-    console.log("Here you can setup and run express / fastify / any other framework.")
-
-}).catch(error => console.log(error))

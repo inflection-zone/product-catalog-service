@@ -1,0 +1,9 @@
+{
+    "name":"product-catalog",
+    "type":"mysql2",
+    "host":"localhost",
+    "username":"root",
+    "password":"root",
+    "port":3306,
+    "database": "mydb"
+}
