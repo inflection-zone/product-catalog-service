@@ -1,9 +1,11 @@
 import express from "express";
-import { productOfferService } from "../services/productOffer.services";
+import { productOfferService } from "../services/product.offer.services";
 import { ResponseHandler } from "../common/response.handler";
 import { ApiError } from "../common/api.error";
 import { ErrorHandler } from "../common/error.handler";
 import { ProductOfferValidator } from "./product.offer.validator";
+import { ProductOfferUpdateModel } from "../domain types/productOffer/product.offer.types";
+
 export class productOfferController {
     service: productOfferService = null;
     constructor() {
@@ -62,6 +64,7 @@ export class productOfferController {
                 ErrorHandler.throwNotFoundError(`ProductOffer with id ${req.params.id} not found`);
             }
             await ProductOfferValidator.validateUpdateRequest(req.body);
+           const updateModel : ProductOfferUpdateModel = this.getUpdateModel(req.body);
             const updateProductOffer = await this.service.updateProductOffer(req);
             const Message = "Successfully updated ProductOffer info";
             ResponseHandler.success(req, res, Message, 200, updateProductOffer);
@@ -86,4 +89,12 @@ export class productOfferController {
             ResponseHandler.handleError(req, res, error);
         }
     };
+    private getUpdateModel(requestBody): ProductOfferUpdateModel{
+        const model : ProductOfferUpdateModel={
+            title: requestBody.title,
+            details: requestBody.details,
+            productId : requestBody.productId
+        };
+        return model;
+     }
 }

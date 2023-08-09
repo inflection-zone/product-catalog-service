@@ -11,10 +11,12 @@ export class CustomerReview{
 
     @ManyToOne(()=>Product)
     product: Product
+    productId : string;
 
     @ManyToOne(()=>Customer)
     @JoinColumn({name: "customerId"})
     customer: Customer
+    customerId : string;
 
     @Column()
     verifiedPurchase: boolean

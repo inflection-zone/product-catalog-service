@@ -9,15 +9,13 @@ export class ProductOffer {      //camel_case
 
   @ManyToOne(() => Product, (product)=> product.productOffers) // many productOff one prod
   product: Product;
-  productId: number;
+  productId: string;
 
   @Column()
   title: string;
 
   @Column()
   details: string;
-
-
   
 }
 

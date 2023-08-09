@@ -7,7 +7,7 @@ export class CategoryValidator {
             const schema = Joi.object({
                 name: Joi.string().min(2).max(15).required(),
                 description: Joi.string().min(2).max(50).required(),
-                parentCategoryId: Joi.number().integer().required(),
+                parentCategoryId: Joi.string(),
             });
             return await schema.validateAsync(requestBody);
         } catch (error) {
@@ -20,7 +20,7 @@ export class CategoryValidator {
             const schema = Joi.object({
                 name: Joi.string().min(2).max(15).required(),
                 description: Joi.string().min(2).max(50).required(),
-                parentCategoryId: Joi.number().integer().required(), 
+                parentCategoryId: Joi.string().required(),
             });
             return await schema.validateAsync(requestBody);
         } catch (error) {

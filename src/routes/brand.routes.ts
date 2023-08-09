@@ -10,12 +10,9 @@ brandRouter.get("/:id", controller.getById);
 brandRouter.post("/", controller.create);
 brandRouter.put("/:id", controller.update);
 brandRouter.delete("/:id", controller.del);
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}));
 app.use("/api/v1/brand",brandRouter)
 }
-
-
-
-
 

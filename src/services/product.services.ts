@@ -24,10 +24,10 @@ export class productService {
         const product = new Product();
         product.name = req.body.name;
         product.description = req.body.description;
-        product.categoryId = parseInt(req.body.categoryId);
-        product.brandId = parseInt(req.body.brandId);
-        product.basePrice = req.body.basePrice;
-        product.taxes = req.body.taxes;
+        product.categoryId = req.body.categoryId;
+        product.brandId = req.body.brandId;
+        product.basePrice = parseInt(req.body.basePrice);
+        product.taxes = parseInt(req.body.taxes);
         product.manufacturerName = req.body.manufacturerName;
         product.manufacturerPartNumber = req.body.manufacturerPartNumber;
         const response = await AppDataSource.manager.save(product);
@@ -43,10 +43,10 @@ export class productService {
         });
         product.name = req.body.name;
         product.description = req.body.description;
-        product.categoryId =parseInt(req.body.categoryId);
-        product.brandId = parseInt(req.body.brandId);
-        product.basePrice = req.body.basePrice;
-        product.taxes = req.body.taxes;
+        product.categoryId = req.body.categoryId;
+        product.brandId = req.body.brandId;
+        product.basePrice = parseInt(req.body.basePrice);
+        product.taxes = parseInt(req.body.taxes);
         product.manufacturerName = req.body.manufacturerName;
         product.manufacturerPartNumber = req.body.manufacturerPartNumber;
 

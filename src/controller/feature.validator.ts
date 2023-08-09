@@ -1,13 +1,13 @@
 import Joi from "joi";
 import { ErrorHandler } from '../common/error.handler';
 
-export class ProductOfferValidator {
+export class FeatureValidator {
     static async validateCreateRequest(requestBody: any) {
         try {
             const schema = Joi.object({
-                productId: Joi.string(),
-                title: Joi.string().min(2).max(50).required(),
-                details: Joi.string().min(2).max(200).required(),
+                name: Joi.string().min(2).max(50).required(),
+                description: Joi.string().min(2).max(200).required(),
+                imageUrl: Joi.string().required(),
             });
             return await schema.validateAsync(requestBody);
         } catch (error) {
@@ -18,9 +18,9 @@ export class ProductOfferValidator {
     static async validateUpdateRequest(requestBody: any) {
         try {
             const schema = Joi.object({
-                productId: Joi.string().required(),
-                title: Joi.string().min(2).max(50).required(),
-                details: Joi.string().min(2).max(200).required(),
+                name: Joi.string().min(2).max(50).required(),
+                description: Joi.string().min(2).max(200).required(),
+                imageUrl: Joi.string().required(),
             });
             return await schema.validateAsync(requestBody);
         } catch (error) {

@@ -24,7 +24,7 @@ export class categoryService {
         const category = new Category();
         category.name = req.body.name;
         category.description = req.body.description;
-        category.parentCategoryId = parseInt(req.body.parentCategoryId);
+        category.parentCategoryId = req.body.parentCategoryId;
         const response = await AppDataSource.manager.save(category);
         return CategoryMapper.toDto(response);
     }
@@ -38,7 +38,7 @@ export class categoryService {
         });
         category.name = req.body.name;
         category.description = req.body.description;
-        category.parentCategoryId = parseInt(req.body.parentCategoryId);
+        category.parentCategoryId = req.body.parentCategoryId;
         const response = await AppDataSource.manager.save(category);
         return CategoryMapper.toDto(response);
     }

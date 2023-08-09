@@ -2,5 +2,12 @@ export interface CategoryDto {
     id: string;
     name: string;
     description: string;
-    parentCategoryId: number | null;
+    parentCategoryId: string | null;
+}
+
+export interface CategoryUpdateModel{
+    name? : string,
+    description? : string,
+    parentCategoryId? : string;
+
 }

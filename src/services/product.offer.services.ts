@@ -21,7 +21,7 @@ export class productOfferService {
 
     createProductOffer = async (req: express.Request) => {
         const productOffer = new ProductOffer();
-        productOffer.productId = parseInt(req.params.productId);
+        productOffer.productId = req.body.productId;
         productOffer.title = req.body.title;
         productOffer.details = req.body.details;
 
@@ -40,7 +40,7 @@ export class productOfferService {
         if (!productOffer) {
             return null;
         }
-        productOffer.productId = parseInt(req.params.productId);
+        productOffer.productId = req.body.productId;
         productOffer.title = req.body.title;
         productOffer.details = req.body.details;
 

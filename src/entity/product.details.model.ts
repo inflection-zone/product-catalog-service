@@ -9,6 +9,7 @@ export class ProductDetails{
     
     @ManyToOne(() => Product)
     product: Product;
+    productId : string;
 
     @Column()
     information: string
@@ -20,10 +21,10 @@ export class ProductDetails{
     technicalDetails: string
     
     @Column()
-    partNumber: number
+    partNumber: string
     
     @Column()
-    modelNumber: number
+    modelNumber: string
     
     @Column()
     countryOfOrigin: string

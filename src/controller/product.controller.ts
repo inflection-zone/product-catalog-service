@@ -5,6 +5,7 @@ import { ResponseHandler } from "../common/response.handler";
 import { ApiError } from "../common/api.error";
 import { ErrorHandler } from "../common/error.handler";
 import { ProductValidator } from "./product.validator";
+import { ProductUpdateModel } from "../domain types/product/product.domain.types";
 
 export class productController {
     service: productService = null;
@@ -44,8 +45,9 @@ export class productController {
     create = async (req: express.Request, res: express.Response) => {
         try {
             await ProductValidator.validateCreateRequest(req.body);
+            console.log("controller");
             const product = await this.service.createProduct(req);
-            console.log(product);
+            console.log("product");
             if (product === null) {
                 throw new ApiError("Unable to create product", 400);
             }
@@ -64,7 +66,8 @@ export class productController {
             if (isPresent === null) {
                 ErrorHandler.throwNotFoundError(`Product with id ${req.params.id} not found`);
             }
-            await ProductValidator.validateUpdateRequest(req.body);
+            //await ProductValidator.validateUpdateRequest(req.body);
+            const updateModel : ProductUpdateModel = this.getUpdateModel(req.body);
             const updateProduct = await this.service.updateProduct(req);
             const Message = "Successfully updated Product info";
             ResponseHandler.success(req, res, Message, 200, updateProduct);
@@ -89,4 +92,17 @@ export class productController {
             ResponseHandler.handleError(req, res, error);
         }
     };
+    private getUpdateModel(requestBody): ProductUpdateModel{
+        const model : ProductUpdateModel={
+            name:requestBody.name,
+            description : requestBody.description,
+            categoryId : requestBody.categoryId,
+            brandId : requestBody.brandId, 
+            basePrice: requestBody.basePrice? parseInt(requestBody.basePrice):undefined,
+            taxes:requestBody.taxes? parseInt(requestBody.taxes):undefined,
+            manufacturerName: requestBody.manufacturerName,
+            manufacturerPartNumber:requestBody.manufacturerPartNumber
+        };
+        return model;
+     }
 }

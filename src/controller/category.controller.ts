@@ -4,6 +4,7 @@ import { ResponseHandler } from "../common/response.handler";
 import { ApiError } from "../common/api.error";
 import { ErrorHandler } from "../common/error.handler";
 import { CategoryValidator } from "./category.validator";
+import { CategoryUpdateModel } from "../domain types/category/category.domain.types";
 
 export class categoryController {
     service: categoryService = null;
@@ -58,12 +59,12 @@ export class categoryController {
     update = async (req: express.Request, res: express.Response) => {
         try {
             let id: string = (req.params.id);
-
             const isPresent = await this.service.getCategoryById(id);
             if (isPresent === null) {
                 ErrorHandler.throwNotFoundError(`Category with id ${req.params.id} not found`);
             }
             await CategoryValidator.validateUpdateRequest(req.body);
+            const updateModel : CategoryUpdateModel = this.getUpdateModel(req.body);
             const updateCategory = await this.service.updateCategory(req);
             const Message = "Successfully updated Category info";
             ResponseHandler.success(req, res, Message, 200, updateCategory);
@@ -88,4 +89,12 @@ export class categoryController {
             ResponseHandler.handleError(req, res, error);
         }
     };
+       private getUpdateModel(requestBody): CategoryUpdateModel{
+        const model : CategoryUpdateModel={
+            name:requestBody.name,
+            description : requestBody.description,
+            parentCategoryId : requestBody.parentCategoryId 
+        };
+        return model;
+     }
 }

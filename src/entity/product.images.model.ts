@@ -10,6 +10,7 @@ export class ProductImages{
 
     @ManyToOne(()=>Product)
     product: Product
+    productId : string;
 
     @Column({ type: "varchar", length: 255})
     imageUrl: string

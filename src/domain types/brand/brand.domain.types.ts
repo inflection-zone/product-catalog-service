@@ -3,3 +3,8 @@ export interface BrandDto {
         name: string;
         logoUrl: string;
 }
+
+export interface BrandUpdateModel{
+        name? : string,
+        logoUrl? : string
+}

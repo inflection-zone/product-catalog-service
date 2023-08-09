@@ -2,10 +2,22 @@ export interface ProductDto {
     id: string;
     name: string;
     description: string;
-    categoryId: number;
-    brandId: number;
+    categoryId: string;
+    brandId: string;
     basePrice: number;
     taxes: number;
     manufacturerName: string;
-    manufacturerPartNumber:number;
+    manufacturerPartNumber:string;
+}
+
+export interface ProductUpdateModel{
+    name? : string,
+    description? : string,
+    categoryId : string;
+    brandId: string;
+    basePrice?: number;
+    taxes?: number;
+    manufacturerName?: string;
+    manufacturerPartNumber?:string;
+
 }

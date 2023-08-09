@@ -13,16 +13,8 @@ export class Product {
   @Column()
   name: string;
 
-  @Column({ nullable : true })
+  @Column()
   description: string;
-
-  @ManyToOne(() => Category, category => category.products) // many prod one category
-  category: Category;
-  categoryId: number;
-
-  @ManyToOne(() => Brand, brand => brand.products) // many prod one brand
-  brand: Brand;
-  brandId: number;
 
   @Column()
   basePrice: number;
@@ -33,12 +25,19 @@ export class Product {
   @Column()
   manufacturerName: string;
 
+  @ManyToOne(() => Category, category => category.products) // many prod one category
+  category: Category;
+  categoryId: string;
+
+  @ManyToOne(() => Brand, brand => brand.products) // many prod one brand
+  brand: Brand;
+  brandId: string;
+
   @Column()
-  manufacturerPartNumber: number;
+  manufacturerPartNumber: string;
 
   @OneToMany(() => ProductOffer, (productOffer) => productOffer.product) 
-  productOffers: ProductOffer[];
-    
+  productOffers: ProductOffer[]; 
    
 }
 

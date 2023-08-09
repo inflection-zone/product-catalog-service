@@ -13,11 +13,11 @@ export class Category {
   description: string;
 
   @ManyToOne(() => Category)   // many child one category
-  @JoinColumn ({name: "parentCategoryId"})
   parentCategory: Category;
+  parentCategoryId: string;
 
   @OneToMany (() => Product, (product) => product.category)
   products: Product[];
-    parentCategoryId: number;
+ 
 
 }

@@ -10,9 +10,11 @@ export class ProductFeatures{
 
     @ManyToOne(()=>Product)
     product: Product
+    productId : string;
 
     @ManyToOne(()=>Feature)
     feature: Feature
+    featureId : string;
 
 
 }
