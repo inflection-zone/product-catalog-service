@@ -1,13 +1,13 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToMany, ManyToOne, OneToMany, OneToOne} from "typeorm"
 import { Merchant } from './merchant'
-import { Product } from './product'
+//import { Product } from './product'
 
 
 @Entity() 
 export class ProductMerchant{
 
     @PrimaryGeneratedColumn('uuid')
-    id: number
+    id: string
 
     @Column()
     merchantPrice : number
@@ -21,10 +21,10 @@ export class ProductMerchant{
     @Column()
     shippingCharges: number
 
-    @OneToMany(() => (Merchant), (product)=>product.merchantId)
-    merchantId: Merchant[]
+    // @OneToMany(() => (Merchant), (product)=>product.id)
+    // merchantId: Merchant[]
 
-    @OneToOne(() => (Product))
-    productId: Product
+    // @OneToOne(() => (Product))
+    // productId: Product
     
 }

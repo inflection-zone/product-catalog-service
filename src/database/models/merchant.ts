@@ -5,7 +5,7 @@ import { Url} from "url"
 export class Merchant {
 
     @PrimaryGeneratedColumn('uuid')
-    merchantId : number
+    id : string
 
     @Column()
     name : string
@@ -17,7 +17,7 @@ export class Merchant {
     averageRatings : number
 
     @Column()
-    merchantUrl : string
+    url : string
 
     @Column()
     logo: string

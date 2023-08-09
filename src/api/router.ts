@@ -1,5 +1,8 @@
 import express from 'express'
 import { register as customerRegister} from './customer/customer.routes'
+import { register as merchantRegister} from './merchant/merchant.routes'
+import { register as inventoryRegister} from './inventory/inventory.routes'
+import { register as pmRegister} from './product.merchant/product.merchant.routes'
 import Application from '../app'
 
 export class Router {
@@ -19,7 +22,9 @@ export class Router {
                     })
 
                     customerRegister(this._app)
-
+                    merchantRegister(this._app)
+                    inventoryRegister(this._app)
+                    pmRegister(this._app)
                     
                     resolve(true)
 

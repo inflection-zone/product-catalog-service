@@ -1,87 +1,45 @@
 import express from 'express'
-import { AppDataSource } from '../database/datasource'
+import { Source } from '../database/database.connector.typeorm'
 import { Customer } from '../database/models/customer'
-import bodyParser from 'body-parser'
+import {injectable, inject} from 'tsyringe'
+import { CustomerDomainEntity } from '../domain.types/customer/customer.domain.entity'
+import { ICustomerRepo} from '../database/repository.interface/customer.repo.interface'
+import { CustomerRepo } from '../database/repository/customer.repo'
+import { uuid } from '../domain.types/miscellaneous/system.types'
 
-
+@injectable()
 export class CustomerService {
 
-    public create = async (req: express.Request) => {
-        try {
-            const newCustomer = new Customer()
-            newCustomer.customerName = req.body.customerName
-            newCustomer.customerTaxNumber = req.body.customerTaxNumber
-            newCustomer.phone = req.body.phone
-            newCustomer.email = req.body.customerEmail
-            newCustomer.profileImage = req.body.profileImage
-            await AppDataSource.manager.save(newCustomer)
+    private _CustomerRepo : ICustomerRepo
 
-            const message = "New user saved successfully"
-            return message
-        }catch(error){
-            console.log(error)
-        }
-        
+    // constructor(@inject('ICustomerRepo')
+    //     private _CustomerRepo : ICustomerRepo){
+    //     }
+    constructor(){
+        this._CustomerRepo = new CustomerRepo()
+    }
+
+    public create = async (model: CustomerDomainEntity) => {
+        return await this._CustomerRepo.create(model)
     }
 
 
-    public get = async (req: express.Request) => {
-        try{
-            const customers = await AppDataSource.manager.find(Customer)
-            return customers
-
-        }catch(error){
-            return "Bad request"
-        }
+    public get = async () => {
+        return await this._CustomerRepo.get()
     }
 
     
-    public getById = async (req: express.Request) => {
-        try{
-            const customer = await AppDataSource.manager.findOneBy(Customer, {
-                customerId:parseInt(req.params.id)
-            })
-            return customer
-
-        }catch(error){
-            return "Bad request"
-        }
+    public getById = async (id: uuid) => {
+        return await this._CustomerRepo.getById(id)
     }
 
 
-    public put = async(req: express.Request) => {
-        try {
-            const customer = await AppDataSource.manager.findOneBy(Customer, {
-                customerId:parseInt(req.params.id)
-            })
-            customer.customerName = req.body.customerName
-            customer.customerTaxNumber = req.body.customerTaxNumber
-            customer.phone = req.body.phone
-            customer.email = req.body.email
-            customer.profileImage = req.body.profileImage
-            await AppDataSource.manager.save(customer)
-
-            const message = "Customer details changed successfully"
-            return message
-
-        }catch(error){
-            return "Bad request"
-        }
+    public update = async(id: uuid, updateModel: CustomerDomainEntity) => {
+        return await this._CustomerRepo.update(id, updateModel)
     }
 
 
-    public delete = async(req: express.Request) => {
-
-        try {
-           await AppDataSource.manager.delete(Customer, {
-            customerId: req.params.id
-           })
-
-           return "Customer deleted successfully"
-            
-        }catch(error){
-            return "Bad request"
-        }
-        
+    public delete = async(id: uuid) => {
+        return await this._CustomerRepo.delete(id)
     }
 }

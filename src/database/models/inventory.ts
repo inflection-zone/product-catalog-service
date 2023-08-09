@@ -1,14 +1,14 @@
 import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn} from "typeorm"
 import {Merchant} from "./merchant"
-import {Product} from "./product"
+//import {Product} from "./product"
 
 @Entity()
 export class Inventory{
     @PrimaryGeneratedColumn('uuid')
-    id: number
+    id: string
 
     @Column()
-    batchNumber : number
+    batchNumber : string
 
     @Column()
     totalStock : number
@@ -20,11 +20,11 @@ export class Inventory{
     units : number
 
     @Column()
-    unitsOfMeasure : number
+    unitsOfMeasure : string
 
-    @OneToOne( () => (Product))
-    @JoinColumn()
-    productId : Product
+    // @OneToOne( () => (Product))
+    // @JoinColumn()
+    // productId : Product
 
     @OneToOne( () => Merchant) //the other argument induces bidirectionality of relation
     @JoinColumn()

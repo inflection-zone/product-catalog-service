@@ -9,13 +9,13 @@ export const register = (app: express.Application) : void =>{
     //authenticator
     const controller = new CustomerController();
 
-    router.post('/', controller.post) // create customer
+    router.post('/', controller.create) // create customer
 
     router.get('/', controller.get) // get all customers
 
     router.get('/:id', controller.getById) // get customer by id
 
-    router.put('/:id', controller.put) // update customer by id
+    router.put('/:id', controller.update) // update customer by id
 
     router.delete('/:id', controller.delete) // delete customer by id
 

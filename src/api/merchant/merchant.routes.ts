@@ -1,16 +1,25 @@
 import express from 'express'
-//import loader, authenticator, controller
+import { MerchantController } from './merchant.controller';
+//import loader
+//import authenticator
 
-export const register = (app: express.Application) => {
-    const router = express.Router()
+export const register = (app: express.Application) : void =>{
+    
+    const router = express.Router();
+    //authenticator
+    const controller = new MerchantController();
 
-    router.post('/') // create merchant
-    router.get('/') // get all merchants
-    router.get('/:id') // get merchant by id
-    router.put('/:id') // update merchant by id
-    router.delete('/:id') // delete merchant by id
+    router.post('/', controller.create) // create customer
 
-    //api key routes?
+    router.get('/', controller.get) // get all customers
 
-    app.use('/api/v1/merchant', router)
+    router.get('/:id', controller.getById) // get customer by id
+
+    router.put('/:id', controller.update) // update customer by id
+
+    router.delete('/:id', controller.delete) // delete customer by id
+
+    //routes for api key?
+
+    app.use('/api/v1/customer', router)
 }

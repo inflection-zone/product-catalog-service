@@ -5,13 +5,13 @@ import { Url } from "url"
 export class Customer {
 
     @PrimaryGeneratedColumn('uuid')
-    customerId: number
+    id: string
 
     @Column()
     customerName: string
 
     @Column()
-    customerTaxNumber: number
+    customerTaxNumber: string
 
     @Column()
     phone: number
