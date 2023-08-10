@@ -1,6 +1,6 @@
 import express from "express";
 import {Router} from "./startup/router.js"
-import { AppDataSource } from "./data.source.js";
+import { AppDataSource } from "./database/data.source.js";
 
 export default class Application {
 

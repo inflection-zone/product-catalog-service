@@ -1,6 +1,6 @@
 
-import { ProductOffer } from "../entity/product.offer.model";
-import { ProductOfferDto } from "../domain types/productOffer/product.offer.types";
+import { ProductOffer } from "../models/product.offer.model"; 
+import { ProductOfferDto } from "../../domain types/productOffer/product.offer.types"; 
 
 export class ProductOfferMapper {
     static toDto = (productOffer: ProductOffer): ProductOfferDto => {

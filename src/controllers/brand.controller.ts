@@ -3,7 +3,7 @@ import { brandService } from "../services/brand.services";
 import { ResponseHandler } from "../common/response.handler";
 import { ApiError } from "../common/api.error";
 import { ErrorHandler } from "../common/error.handler";
-import { BrandValidator } from "./brand.validator";
+import { BrandValidator } from "../validators/brand.validator";
 import { BrandUpdateModel } from "../domain types/brand/brand.domain.types";
 
 export class brandController {

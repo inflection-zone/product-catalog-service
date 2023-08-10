@@ -1,5 +1,5 @@
-import { CustomerReviewDto } from "../domain types/customerReview/customer.review.domain.types";
-import { CustomerReview } from "../entity/customer.review.model"; // Replace with actual entity name
+import { CustomerReviewDto } from "../../domain types/customerReview/customer.review.domain.types"; 
+import { CustomerReview } from "../models/customer.review.model"; 
 
 export class CustomerReviewMapper {
     static toDto = (customerReview: CustomerReview): CustomerReviewDto => {

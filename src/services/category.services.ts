@@ -1,7 +1,7 @@
 import express from "express";
-import { Category } from "../entity/category.model";
-import { AppDataSource } from "../data.source";
-import { CategoryMapper } from "../mapper/category.mapper";
+import { Category } from "../database/models/category.model";
+import { AppDataSource } from "../database/data.source";
+import { CategoryMapper } from "../database/mappers/category.mapper";
 
 export class categoryService {
     constructor() { }

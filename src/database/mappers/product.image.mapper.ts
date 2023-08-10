@@ -1,5 +1,5 @@
-import { ProductImageDto } from "../domain types/productImage/product.image.domain.types";
-import { ProductImages } from "../entity/product.images.model"; 
+import { ProductImageDto } from "../../domain types/productImage/product.image.domain.types"; 
+import { ProductImages } from "../models/product.images.model"; 
 
 export class ProductImageMapper {
     static toDto = (productImage: ProductImages): ProductImageDto => {

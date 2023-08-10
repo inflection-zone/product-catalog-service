@@ -1,7 +1,7 @@
 import express from "express";
-import { ProductOffer } from "../entity/product.offer.model";
-import { AppDataSource } from "../data.source";
-import { ProductOfferMapper } from "../mapper/product.offer.mapper";
+import { ProductOffer } from "../database/models/product.offer.model";
+import { AppDataSource } from "../database/data.source";
+import { ProductOfferMapper } from "../database/mappers/product.offer.mapper";
 export class productOfferService {
     constructor() { }
 

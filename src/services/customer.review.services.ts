@@ -1,7 +1,7 @@
 import express from "express";
-import { CustomerReview } from "../entity/customer.review.model"; 
-import { AppDataSource } from "../data.source";
-import { CustomerReviewMapper } from "../mapper/customer.review.mapper"; 
+import { CustomerReview } from "../database/models/customer.review.model"; 
+import { AppDataSource } from "../database/data.source";
+import { CustomerReviewMapper } from "../database/mappers/customer.review.mapper"; 
 
 export class customerReviewService {
     constructor() { }

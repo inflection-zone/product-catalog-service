@@ -1,7 +1,7 @@
 import express from "express";
-import { Feature } from "../entity/feature.model";
-import { AppDataSource } from "../data.source";
-import { FeatureMapper } from "../mapper/feature.mapper";
+import { Feature } from "../database/models/feature.model"; 
+import { AppDataSource } from "../database/data.source";
+import { FeatureMapper } from "../database/mappers/feature.mapper"; 
 
 export class featureService {
     constructor() { }

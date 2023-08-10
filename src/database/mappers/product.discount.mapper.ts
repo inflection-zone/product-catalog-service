@@ -1,6 +1,6 @@
 
-import { ProductDiscountDto } from "../domain types/productDiscount/product.discount.domain.types"; // Replace with actual domain types
-import { ProductDiscounts } from "../entity/product.discounts.model"; // Replace with actual entity name
+import { ProductDiscountDto } from "../../domain types/productDiscount/product.discount.domain.types"; 
+import { ProductDiscounts } from "../models/product.discounts.model"; 
 
 export class ProductDiscountMapper {
     static toDto = (productDiscount: ProductDiscounts): ProductDiscountDto => {

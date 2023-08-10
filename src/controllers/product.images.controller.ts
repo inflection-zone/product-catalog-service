@@ -3,7 +3,7 @@ import { productImageService } from "../services/product.images.services"; // Im
 import { ResponseHandler } from "../common/response.handler";
 import { ApiError } from "../common/api.error";
 import { ErrorHandler } from "../common/error.handler";
-import { ProductImageValidator } from "./product.images.validator"; 
+import { ProductImageValidator } from "../validators/product.images.validator";  
 import { ProductImageUpdateModel } from "../domain types/productImage/product.image.domain.types";
 export class productImagesController {
     service: productImageService = null;

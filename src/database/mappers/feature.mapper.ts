@@ -1,5 +1,5 @@
-import { FeatureDto } from "../domain types/feature/feature.domain.types"; 
-import { Feature } from "../entity/feature.model";
+import { FeatureDto } from "../../domain types/feature/feature.domain.types"; 
+import { Feature } from "../models/feature.model";
 
 export class FeatureMapper {
     static toDto = (feature: Feature): FeatureDto => {

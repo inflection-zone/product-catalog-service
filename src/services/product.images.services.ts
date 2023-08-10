@@ -1,7 +1,7 @@
 import express from "express";
-import { ProductImages } from "../entity/product.images.model";
-import { AppDataSource } from "../data.source";
-import { ProductImageMapper } from "../mapper/product.image.mapper"; // You would need to create this mapper
+import { ProductImages } from "../database/models/product.images.model"; 
+import { AppDataSource } from "../database/data.source";
+import { ProductImageMapper } from "../database/mappers/product.image.mapper";
 
 export class productImageService {
     constructor() { }

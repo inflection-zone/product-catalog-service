@@ -3,7 +3,7 @@ import { categoryService } from "../services/category.services";
 import { ResponseHandler } from "../common/response.handler";
 import { ApiError } from "../common/api.error";
 import { ErrorHandler } from "../common/error.handler";
-import { CategoryValidator } from "./category.validator";
+import { CategoryValidator } from "../validators/category.validator";
 import { CategoryUpdateModel } from "../domain types/category/category.domain.types";
 
 export class categoryController {

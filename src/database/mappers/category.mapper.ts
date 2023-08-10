@@ -1,5 +1,5 @@
-import { CategoryDto } from "../domain types/category/category.domain.types";
-import { Category } from "../entity/category.model";
+import { CategoryDto } from "../../domain types/category/category.domain.types";
+import { Category } from "../models/category.model"; 
 
 export class CategoryMapper {
     static toDto = (category: Category): CategoryDto => {

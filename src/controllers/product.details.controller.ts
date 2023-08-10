@@ -3,7 +3,7 @@ import { productDetailsService } from "../services/product.details.services";
 import { ResponseHandler } from "../common/response.handler";
 import { ApiError } from "../common/api.error";
 import { ErrorHandler } from "../common/error.handler";
-import { ProductDetailsValidator } from "./product.details.validator";  
+import { ProductDetailsValidator } from "../validators/product.details.validator";  
 import { ProductDetailsUpdateModel } from "../domain types/productDetails/product.details.domain.types";
 
 export class productDetailsController {

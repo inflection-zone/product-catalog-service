@@ -1,5 +1,5 @@
 import express from "express";
-import { productController } from "../controller/product.controller";
+import { productController } from "../controllers/product.controller";
 import bodyParser from "body-parser";
 
 export const register = (app: express.Application) =>{

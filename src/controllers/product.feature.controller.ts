@@ -3,7 +3,7 @@ import { productFeatureService } from "../services/product.feature.services"; //
 import { ResponseHandler } from "../common/response.handler";
 import { ApiError } from "../common/api.error";
 import { ErrorHandler } from "../common/error.handler";
-import { ProductFeatureValidator } from "./product.feature.validator"; // Import the appropriate validator
+import { ProductFeatureValidator } from "../validators/product.feature.validator"; // Import the appropriate validator
 import { ProductFeatureUpdateModel } from "../domain types/productFeature/product.feature.domain.types"; // Import the appropriate domain types
 
 export class productFeatureController {

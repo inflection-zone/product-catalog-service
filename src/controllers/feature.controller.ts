@@ -3,7 +3,7 @@ import { featureService } from "../services/feature.services";
 import { ResponseHandler } from "../common/response.handler";
 import { ApiError } from "../common/api.error";
 import { ErrorHandler } from "../common/error.handler";
-import { FeatureValidator } from "./feature.validator";
+import { FeatureValidator } from "../validators/feature.validator"; 
 import { FeatureUpdateModel } from "../domain types/feature/feature.domain.types";
 
 export class featureController {

@@ -1,7 +1,7 @@
 import express from "express";
-import { ProductDiscounts } from "../entity/product.discounts.model";
-import { AppDataSource } from "../data.source";
-import { ProductDiscountMapper } from "../mapper/product.discount.mapper";
+import { ProductDiscounts } from "../database/models/product.discounts.model"; 
+import { AppDataSource } from "../database/data.source";
+import { ProductDiscountMapper } from "../database/mappers/product.discount.mapper"; 
 
 export class productDiscountService {
     constructor() { }

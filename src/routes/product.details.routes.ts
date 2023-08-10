@@ -1,6 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
-import { productDetailsController } from "../controller/product.details.controller"; // Import the appropriate controller
+import { productDetailsController } from "../controllers/product.details.controller"; // Import the appropriate controller
 export const register = (app: express.Application) => {
   const productDetailsRouter = express.Router(); 
 

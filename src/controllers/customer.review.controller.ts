@@ -3,7 +3,7 @@ import { customerReviewService } from "../services/customer.review.services";
 import { ResponseHandler } from "../common/response.handler";
 import { ApiError } from "../common/api.error";
 import { ErrorHandler } from "../common/error.handler";
-import { CustomerReviewValidator } from "./customer.review.validator"; 
+import { CustomerReviewValidator } from "../validators/customer.review.validator";  
 import { CustomerReviewUpdateModel } from "../domain types/customerReview/customer.review.domain.types"; // Import the appropriate domain types
 
 export class customerReviewController {

@@ -4,7 +4,7 @@ import { productService } from "../services/product.services";
 import { ResponseHandler } from "../common/response.handler";
 import { ApiError } from "../common/api.error";
 import { ErrorHandler } from "../common/error.handler";
-import { ProductValidator } from "./product.validator";
+import { ProductValidator } from "../validators/product.validator";
 import { ProductUpdateModel } from "../domain types/product/product.domain.types";
 
 export class productController {

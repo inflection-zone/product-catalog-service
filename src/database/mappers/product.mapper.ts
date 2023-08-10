@@ -1,5 +1,5 @@
-import { ProductDto } from "../domain types/product/product.domain.types";
-import { Product } from "../entity/product.model";
+import { ProductDto } from "../../domain types/product/product.domain.types"; 
+import { Product } from "../models/product.model"; 
 
 export class ProductMapper {
     static toDto = (product: Product): ProductDto => {

@@ -1,6 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
-import { brandController } from "../controller/brand.controller";
+import { brandController } from "../controllers/brand.controller"; 
 export const register = (app: express.Application) =>{
 const brandRouter = express.Router();
 

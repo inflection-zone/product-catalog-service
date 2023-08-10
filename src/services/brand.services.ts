@@ -1,7 +1,7 @@
 import express from "express";
-import { Brand } from "../entity/brand.model";
-import { AppDataSource } from "../data.source";
-import { BrandMapper } from "../mapper/brand.mapper";
+import { Brand } from "../database/models/brand.model";
+import { AppDataSource } from "../database/data.source";
+import { BrandMapper } from "../database/mappers/brand.mapper";
 
 export class brandService {
     constructor() { }

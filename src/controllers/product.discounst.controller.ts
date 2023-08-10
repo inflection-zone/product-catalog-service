@@ -3,7 +3,7 @@ import { productDiscountService } from "../services/product.discounts.services";
 import { ResponseHandler } from "../common/response.handler";
 import { ApiError } from "../common/api.error";
 import { ErrorHandler } from "../common/error.handler";
-import { ProductDiscountValidator } from "./product.discounst.validator";
+import { ProductDiscountValidator } from "../validators/product.discounst.validator"; 
 import { ProductDiscountUpdateModel } from "../domain types/productDiscount/product.discount.domain.types";
 export class productDiscountsController {
     service: productDiscountService = null;

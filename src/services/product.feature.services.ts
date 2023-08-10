@@ -1,7 +1,7 @@
 import express from "express";
-import { ProductFeatures } from "../entity/product.feature.model";
-import { AppDataSource } from "../data.source";
-import { ProductFeatureMapper } from "../mapper/product.feature.mapper";
+import { ProductFeatures } from "../database/models/product.feature.model"; 
+import { AppDataSource } from "../database/data.source";
+import { ProductFeatureMapper } from "../database/mappers/product.feature.mapper"; 
 
 export class productFeatureService {
     constructor() { }

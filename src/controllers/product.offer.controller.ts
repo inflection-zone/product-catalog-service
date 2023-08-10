@@ -3,7 +3,7 @@ import { productOfferService } from "../services/product.offer.services";
 import { ResponseHandler } from "../common/response.handler";
 import { ApiError } from "../common/api.error";
 import { ErrorHandler } from "../common/error.handler";
-import { ProductOfferValidator } from "./product.offer.validator";
+import { ProductOfferValidator } from "../validators/product.offer.validator";
 import { ProductOfferUpdateModel } from "../domain types/productOffer/product.offer.types";
 
 export class productOfferController {

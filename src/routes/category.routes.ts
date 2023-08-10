@@ -1,5 +1,5 @@
 import express from "express";
-import { categoryController } from "../controller/category.controller";
+import { categoryController } from "../controllers/category.controller";
 import bodyParser from "body-parser";
 
 export const register = (app: express.Application) =>{
