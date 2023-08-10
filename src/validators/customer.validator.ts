@@ -1,7 +1,7 @@
-import { CustomerDto } from "../../domain.types/customer/customer.dto";
-import { CustomerDomainEntity } from "../../domain.types/customer/customer.domain.entity";
+import { CustomerDto } from "../domain.types/customer/customer.dto";
+import { CustomerDomainEntity } from "../domain.types/customer/customer.domain.entity";
 import express from 'express'
-import { Customer } from "../../database/models/customer";
+import { Customer } from "../database/models/customer";
 import { request } from "http";
 import Joi from 'joi';
 

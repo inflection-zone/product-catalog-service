@@ -1,8 +1,8 @@
 import express from 'express'
-import { register as customerRegister} from './customer/customer.routes'
-import { register as merchantRegister} from './merchant/merchant.routes'
-import { register as inventoryRegister} from './inventory/inventory.routes'
-import { register as pmRegister} from './product.merchant/product.merchant.routes'
+import { register as customerRegister} from '../routes/customer.routes'
+import { register as merchantRegister} from '../routes/merchant.routes'
+import { register as inventoryRegister} from '../routes/inventory.routes'
+import { register as pmRegister} from '../routes/product.merchant.routes'
 import Application from '../app'
 
 export class Router {

@@ -1,10 +1,10 @@
 import express from 'express'
-import { CustomerService } from '../../services/customer.service'
-import { Customer } from '../../database/models/customer'
-import { CustomerValidator } from './customer.validator'
-import { uuid } from '../../domain.types/miscellaneous/system.types'
-import { ApiError } from '../../common/api.error'
-import { ResponseHandler } from '../../common/response.handler'
+import { CustomerService } from '../services/customer.service'
+import { Customer } from '../database/models/customer'
+import { CustomerValidator } from '../validators/customer.validator'
+import { uuid } from '../domain.types/miscellaneous/system.types'
+import { ApiError } from '../common/api.error'
+import { ResponseHandler } from '../common/response.handler'
 
 
 export class CustomerController{

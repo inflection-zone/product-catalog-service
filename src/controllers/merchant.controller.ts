@@ -1,10 +1,10 @@
 import express from 'express'
-import { MerchantService } from '../../services/merchant.service'
-import { Merchant } from '../../database/models/merchant'
-import { MerchantValidator } from './merchant.validator'
-import { uuid } from '../../domain.types/miscellaneous/system.types'
-import { ApiError } from '../../common/api.error'
-import { ResponseHandler } from '../../common/response.handler'
+import { MerchantService } from '../services/merchant.service'
+import { Merchant } from '../database/models/merchant'
+import { MerchantValidator } from '../validators/merchant.validator'
+import { uuid } from '../domain.types/miscellaneous/system.types'
+import { ApiError } from '../common/api.error'
+import { ResponseHandler } from '../common/response.handler'
 
 
 export class MerchantController{

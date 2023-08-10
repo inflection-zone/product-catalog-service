@@ -1,7 +1,7 @@
-import { InventoryDto } from "../../domain.types/inventory/inventory.dto";
-import {InventoryDomainEntity} from "../../domain.types/inventory/inventory.domain.entity"
+import { InventoryDto } from "../domain.types/inventory/inventory.dto";
+import {InventoryDomainEntity} from "../domain.types/inventory/inventory.domain.entity"
 import express from 'express'
-import { Inventory } from "../../database/models/inventory";
+import { Inventory } from "../database/models/inventory";
 import { request } from "http";
 import Joi from 'joi';
 

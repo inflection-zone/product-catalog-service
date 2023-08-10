@@ -1,7 +1,7 @@
-import { MerchantDto } from "../../domain.types/merchant/merchant.dto";
-import { MerchantDomainEntity } from "../../domain.types/merchant/merchant.domain.entity"
+import { MerchantDto } from "../domain.types/merchant/merchant.dto";
+import { MerchantDomainEntity } from "../domain.types/merchant/merchant.domain.entity"
 import express from 'express'
-import { Merchant } from "../../database/models/merchant";
+import { Merchant } from "../database/models/merchant";
 import { request } from "http";
 import Joi from 'joi';
 

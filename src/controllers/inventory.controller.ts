@@ -1,10 +1,10 @@
 import express from 'express'
-import { InventoryService } from '../../services/inventory.service'
-import { Inventory } from '../../database/models/inventory'
-import { InventoryValidator } from './inventory.validator'
-import { uuid } from '../../domain.types/miscellaneous/system.types'
-import { ApiError } from '../../common/api.error'
-import { ResponseHandler } from '../../common/response.handler'
+import { InventoryService } from '../services/inventory.service'
+import { Inventory } from '../database/models/inventory'
+import { InventoryValidator } from '../validators/inventory.validator'
+import { uuid } from '../domain.types/miscellaneous/system.types'
+import { ApiError } from '../common/api.error'
+import { ResponseHandler } from '../common/response.handler'
 
 
 export class InventoryController{

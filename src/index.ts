@@ -3,8 +3,8 @@
 import { Source } from './database/database.connector.typeorm'
 import express from 'express'
 import Application from './app'
-import { Router } from './api/router'
-import {CustomerController} from './api/customer/customer.controller'
+import { Router } from './startup/router'
+import {CustomerController} from './controllers/customer.controller'
 
 
 const main = async () => {

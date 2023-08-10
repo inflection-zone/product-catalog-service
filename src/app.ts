@@ -1,5 +1,5 @@
 import express from 'express'
-import {Router} from './api/router'
+import {Router} from './startup/router'
 
 export default class Application {
     

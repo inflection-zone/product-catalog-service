@@ -1,7 +1,7 @@
-import { ProductMerchantDto } from "../../domain.types/product.merchant/product.merchant.dto";
-import {ProductMerchantDomainEntity} from "../../domain.types/product.merchant/product.merchant.domain.entity"
+import { ProductMerchantDto } from "../domain.types/product.merchant/product.merchant.dto";
+import {ProductMerchantDomainEntity} from "../domain.types/product.merchant/product.merchant.domain.entity"
 import express from 'express'
-import { ProductMerchant } from "../../database/models/product.merchant";
+import { ProductMerchant } from "../database/models/product.merchant";
 import { request } from "http";
 import Joi from 'joi';
 

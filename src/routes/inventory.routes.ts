@@ -1,5 +1,5 @@
 import express from 'express'
-import { ProductMerchantController } from './product.merchant.controller';
+import { InventoryController } from '../api/inventory/inventory.controller';
 //import loader
 //import authenticator
 
@@ -7,7 +7,7 @@ export const register = (app: express.Application) : void =>{
     
     const router = express.Router();
     //authenticator
-    const controller = new ProductMerchantController();
+    const controller = new InventoryController();
 
     router.post('/', controller.create) // create customer
 
