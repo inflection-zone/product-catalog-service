@@ -10,24 +10,29 @@ export class CustomerValidator {
     static async validateCreateRequest(requestBody) {
         try {
             const schema = Joi.object({
-                customerName: Joi.string()
+                CustomerName: Joi.string()
                     .min(1)
                     .max(30)
                     .required(),
 
-                customerTaxNumber: Joi.string()
+                CustomerTaxNumber: Joi.string()
                     .alphanum()
                     .min(1)
                     .max(10),
 
-                phone: Joi.number()
+                Phone: Joi.number()
                     .integer(),
 
-                email: Joi.string()
+                Email: Joi.string()
                     .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
 
-                profileImage: Joi.string()
+                ProfileImage: Joi.string()
+                .min(1),
+
+                Password: Joi.string()
+                .alphanum()
                 .min(1)
+                .required()
             })
 
             return await schema.validateAsync(requestBody)
@@ -41,22 +46,26 @@ export class CustomerValidator {
     static async validateUpdateRequest(requestBody) {
         try {
             const schema = Joi.object({
-                customerName: Joi.string()
+                CustomerName: Joi.string()
                     .min(1)
                     .max(30),
 
-                customerTaxNumber: Joi.string()
+                CustomerTaxNumber: Joi.string()
                     .alphanum()
                     .min(1)
                     .max(10),
 
-                phone: Joi.number()
+                Phone: Joi.number()
                     .integer(),
 
-                email: Joi.string()
+                Email: Joi.string()
                     .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
 
-                profileImage: Joi.string()
+                ProfileImage: Joi.string()
+                .min(1),
+
+                Password: Joi.string()
+                .alphanum()
                 .min(1)
             })
 

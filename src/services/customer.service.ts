@@ -23,6 +23,9 @@ export class CustomerService {
         return await this._CustomerRepo.create(model)
     }
 
+    public login = async(req: express.Request) => {
+        return await this._CustomerRepo.login(req)
+    }
 
     public get = async () => {
         return await this._CustomerRepo.get()

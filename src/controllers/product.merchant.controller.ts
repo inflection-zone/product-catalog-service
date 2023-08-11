@@ -1,7 +1,7 @@
 import express from 'express'
 import { ProductMerchantService } from '../services/product.merchant.service'
 import { ProductMerchant } from '../database/models/product.merchant'
-import { ProductMerchantValidator } from '../api/product.merchant/product.merchant.validator'
+import { ProductMerchantValidator } from '../validators/product.merchant.validator'
 import { uuid } from '../domain.types/miscellaneous/system.types'
 import { ApiError } from '../common/api.error'
 import { ResponseHandler } from '../common/response.handler'

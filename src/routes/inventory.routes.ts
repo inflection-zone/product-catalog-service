@@ -1,5 +1,5 @@
 import express from 'express'
-import { InventoryController } from '../api/inventory/inventory.controller';
+import { InventoryController } from '../controllers/inventory.controller';
 //import loader
 //import authenticator
 

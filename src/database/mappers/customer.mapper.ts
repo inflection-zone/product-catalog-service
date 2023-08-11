@@ -9,12 +9,12 @@ export class CustomerMapper{
         }
 
         const dto : CustomerDto = {
-            id : customer.id,
-            customerName : customer.customerName,
-            customerTaxNumber : customer.customerTaxNumber,
-            phone : customer.phone,
-            email : customer.email,
-            profileImage : customer.profileImage
+            customerId : customer.customerId,
+            CustomerName : customer.CustomerName,
+            CustomerTaxNumber : customer.CustomerTaxNumber,
+            Phone : customer.Phone,
+            Email : customer.Email,
+            ProfileImage : customer.ProfileImage,
         };
 
         return dto;
