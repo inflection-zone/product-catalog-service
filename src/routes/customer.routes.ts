@@ -10,6 +10,8 @@ export const register = (app: express.Application) : void =>{
     //authenticator
     const controller = new CustomerController();
 
+    router.post('/login', controller.login)
+
     router.post('/', controller.create) // create customer
 
     router.post('/login', controller.login)

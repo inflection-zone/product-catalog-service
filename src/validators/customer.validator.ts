@@ -1,8 +1,3 @@
-import { CustomerDto } from "../domain.types/customer/customer.dto";
-import { CustomerDomainEntity } from "../domain.types/customer/customer.domain.entity";
-import express from 'express'
-import { Customer } from "../database/models/customer";
-import { request } from "http";
 import Joi from 'joi';
 
 
@@ -27,16 +22,16 @@ export class CustomerValidator {
                     .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
 
                 ProfileImage: Joi.string()
-                .min(1),
+                    .min(1),
 
                 Password: Joi.string()
-                .alphanum()
-                .min(1)
-                .required()
+                    .alphanum()
+                    .min(1)
+                    .required()
             })
 
             return await schema.validateAsync(requestBody)
-        }catch(error){
+        } catch (error) {
             console.log(error)
         }
     }
@@ -62,7 +57,11 @@ export class CustomerValidator {
                     .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
 
                 ProfileImage: Joi.string()
+<<<<<<< HEAD
+                    .min(1),
+=======
                 .min(1),
+>>>>>>> 1e92913 (Auth added)
 
                 Password: Joi.string()
                 .alphanum()
@@ -70,7 +69,7 @@ export class CustomerValidator {
             })
 
             return await schema.validateAsync(requestBody)
-        }catch(error){
+        } catch (error) {
             console.log(error)
         }
     }

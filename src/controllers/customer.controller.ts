@@ -6,7 +6,6 @@ import { uuid } from '../domain.types/miscellaneous/system.types'
 import { ApiError } from '../common/api.error'
 import { ResponseHandler } from '../common/response.handler'
 
-
 export class CustomerController {
 
     private _service: CustomerService
