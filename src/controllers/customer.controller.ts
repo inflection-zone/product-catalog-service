@@ -45,6 +45,7 @@ export class CustomerController {
         }
     }
 
+    
     public get = async (req: express.Request, res: express.Response) => {
         try {
             const customers = await this._service.get()
