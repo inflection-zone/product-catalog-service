@@ -11,12 +11,12 @@ export class MerchantMapper{
         }
 
         const dto : MerchantDto = {
-            id : merchant.id,
-            name : merchant.name,
-            address : merchant.address,
-            averageRatings : merchant.averageRatings,
-            url : merchant.url,
-            logo : merchant.logo
+            merchantId : merchant.merchantId,
+            MerchantName : merchant.MerchantName,
+            Address : merchant.Address,
+            AverageRatings : merchant.AverageRatings,
+            Url : merchant.Url,
+            Logo : merchant.Logo
         };
 
         return dto;

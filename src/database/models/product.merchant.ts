@@ -10,16 +10,16 @@ export class ProductMerchant{
     id: string
 
     @Column()
-    merchantPrice : number
+    MerchantPrice : number
 
     @Column()
-    taxes : number
+    Taxes : number
 
     @Column()
-    includeShipping: boolean
+    IncludeShipping: boolean
 
     @Column()
-    shippingCharges: number
+    ShippingCharges: number
 
     // @OneToMany(() => (Merchant), (product)=>product.id)
     // merchantId: Merchant[]

@@ -5,21 +5,21 @@ import { Url} from "url"
 export class Merchant {
 
     @PrimaryGeneratedColumn('uuid')
-    id : string
+    merchantId : string
 
     @Column()
-    name : string
+    MerchantName : string
 
     @Column()
-    address : string
+    Address : string
 
     @Column()
-    averageRatings : number
+    AverageRatings : number
 
     @Column()
-    url : string
+    Url : string
 
     @Column()
-    logo: string
+    Logo: string
     
 }

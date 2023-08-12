@@ -57,11 +57,7 @@ export class CustomerValidator {
                     .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
 
                 ProfileImage: Joi.string()
-<<<<<<< HEAD
-                    .min(1),
-=======
                 .min(1),
->>>>>>> 1e92913 (Auth added)
 
                 Password: Joi.string()
                 .alphanum()

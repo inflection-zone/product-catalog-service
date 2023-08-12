@@ -16,11 +16,11 @@ export class MerchantRepo implements IMerchantRepo {
     create = async(model: MerchantDomainEntity) : Promise<MerchantDto> => {
         try{
             const entity = {
-                name: model.name,
-                address: model.address,
-                averageRatings : model.averageRatings,
-                url : model.url,
-                logo: model.logo
+                MerchantName: model.MerchantName,
+                Address: model.Address,
+                AverageRatings : model.AverageRatings,
+                Url : model.Url,
+                Logo: model.Logo
                 
             }
     
@@ -47,7 +47,7 @@ export class MerchantRepo implements IMerchantRepo {
 
     getById = async(id: uuid) : Promise<MerchantDto> => {
         try{
-            const merchant = await this._MerchantRepo.findOne({where : {id : id}})
+            const merchant = await this._MerchantRepo.findOne({where : {merchantId : id}})
             const dto = MerchantMapper.toDto(merchant)
             return dto
         }catch(error){
@@ -59,21 +59,21 @@ export class MerchantRepo implements IMerchantRepo {
     update = async(id: uuid, updateModel: MerchantDomainEntity) : Promise<MerchantDto> => {
         try{
             const merchant = await this._MerchantRepo.findOne({where : 
-                {id: id}})
+                {merchantId: id}})
 
-            if(updateModel.name != null){
-                merchant.name = updateModel.name;
+            if(updateModel.MerchantName != null){
+                merchant.MerchantName = updateModel.MerchantName;
             }
-            if(updateModel.address != null){
-                merchant.address = updateModel.address;
-            }if(updateModel.averageRatings != null){
-                merchant.averageRatings = updateModel.averageRatings;
+            if(updateModel.Address != null){
+                merchant.Address = updateModel.Address;
+            }if(updateModel.AverageRatings != null){
+                merchant.AverageRatings = updateModel.AverageRatings;
             }
-            if(updateModel.url != null){
-                merchant.url = updateModel.url;
+            if(updateModel.Url != null){
+                merchant.Url = updateModel.Url;
             }
-            if(updateModel.logo != null){
-                merchant.logo = updateModel.logo;
+            if(updateModel.Logo != null){
+                merchant.Logo = updateModel.Logo;
             }
 
             const record = await this._MerchantRepo.save(merchant)
@@ -88,7 +88,7 @@ export class MerchantRepo implements IMerchantRepo {
 
     delete = async(id: uuid) : Promise<boolean> => {
         try{
-            const Merchant = await this._MerchantRepo.findOne({where :{id:id}})
+            const Merchant = await this._MerchantRepo.findOne({where :{merchantId:id}})
             const result = await this._MerchantRepo.remove(Merchant)
             return result != null;
         }catch(error){

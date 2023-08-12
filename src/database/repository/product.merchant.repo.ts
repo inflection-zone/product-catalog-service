@@ -16,10 +16,10 @@ export class ProductMerchantRepo implements IProductMerchantRepo {
     create = async (model: ProductMerchantDomainEntity): Promise<ProductMerchantDto> => {
         try {
             const entity = {
-                merchantPrice: model.merchantPrice,
-                taxes: model.taxes,
-                includeShipping: model.includeShipping,
-                shippingCharges: model.shippingCharges,
+                MerchantPrice: model.MerchantPrice,
+                es: model.Taxes,
+                IncludeShipping: model.IncludeShipping,
+                ShippingCharges: model.ShippingCharges,
             }
 
             const pm = await this._ProductMerchantRepo.create(entity)
@@ -64,17 +64,17 @@ export class ProductMerchantRepo implements IProductMerchantRepo {
                     { id: id }
             })
 
-            if (updateModel.merchantPrice != null) {
-                pm.merchantPrice = updateModel.merchantPrice;
+            if (updateModel.MerchantPrice != null) {
+                pm.MerchantPrice = updateModel.MerchantPrice;
             }
-            if (updateModel.taxes != null) {
-                pm.taxes = updateModel.taxes;
+            if (updateModel.Taxes != null) {
+                pm.Taxes = updateModel.Taxes;
             } 
-            if (updateModel.shippingCharges != null) {
-                pm.shippingCharges = updateModel.shippingCharges;
+            if (updateModel.ShippingCharges != null) {
+                pm.ShippingCharges = updateModel.ShippingCharges;
             } 
-            if (updateModel.includeShipping != null) {
-                pm.includeShipping = updateModel.includeShipping;
+            if (updateModel.IncludeShipping != null) {
+                pm.IncludeShipping = updateModel.IncludeShipping;
             }
 
             const record = await this._ProductMerchantRepo.save(pm)

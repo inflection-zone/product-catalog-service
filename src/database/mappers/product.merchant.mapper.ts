@@ -12,10 +12,10 @@ export class ProductMerchantMapper{
         const dto : ProductMerchantDto = {
             //productId : pm.productId,
             //merchantId : pm.merchantId,
-            merchantPrice : pm.merchantPrice,
-            taxes : pm.taxes,
-            includeShipping : pm.includeShipping,
-            shippingCharges : pm.shippingCharges
+            MerchantPrice : pm.MerchantPrice,
+            Taxes : pm.Taxes,
+            IncludeShipping : pm.IncludeShipping,
+            ShippingCharges : pm.ShippingCharges
         };
 
         return dto;

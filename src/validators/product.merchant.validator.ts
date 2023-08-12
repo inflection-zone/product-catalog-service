@@ -11,18 +11,18 @@ export class ProductMerchantValidator {
         try {
             const schema = Joi.object({
     
-                merchantPrice: Joi.number()
+                MerchantPrice: Joi.number()
                     .min(9)
                     .required(),
 
-                taxes: Joi.number()
+                Taxes: Joi.number()
                     .min(0)
                     .required(),
 
-                includeShipping: Joi.boolean()
+                IncludeShipping: Joi.boolean()
                     .required(),
 
-                shippingCharges: Joi.number()
+                ShippingCharges: Joi.number()
                     .min(0)
                     .required(),
 
@@ -40,18 +40,18 @@ export class ProductMerchantValidator {
         try {
             const schema = Joi.object({
     
-                merchantPrice: Joi.number()
+                MerchantPrice: Joi.number()
                     .min(9)
                     .required(),
 
-                taxes: Joi.number()
+                Taxes: Joi.number()
                     .min(0)
                     .required(),
 
-                includeShipping: Joi.boolean()
+                IncludeShipping: Joi.boolean()
                     .required(),
 
-                shippingCharges: Joi.number()
+                ShippingCharges: Joi.number()
                     .min(0)
                     .required(),
 

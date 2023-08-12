@@ -11,11 +11,11 @@ export class InventoryMapper{
         const dto : InventoryDto = {
             productId : inventory.id,
             merchantId : inventory.id,
-            batchNumber : inventory.batchNumber,
-            totalStock : inventory.totalStock,
-            currentStock : inventory.currentStock,
-            units : inventory.units,
-            unitsOfMeasure : inventory.unitsOfMeasure
+            BatchNumber : inventory.BatchNumber,
+            TotalStock : inventory.TotalStock,
+            CurrentStock : inventory.CurrentStock,
+            Units : inventory.Units,
+            UnitsOfMeasure : inventory.UnitsOfMeasure
         };
 
         return dto;

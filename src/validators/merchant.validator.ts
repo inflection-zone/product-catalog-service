@@ -10,31 +10,31 @@ export class MerchantValidator {
     static async validateCreateRequest(requestBody) {
         try {
             const schema = Joi.object({
-                id: Joi.string()
+                merchantId: Joi.string()
                     .alphanum()
                     .min(1)
                     .max(30)
                     .required(),
 
-                name: Joi.string()
+                MerchantName: Joi.string()
                     .min(1)
                     .required(),
 
-                address: Joi.string()
+                Address: Joi.string()
                     .alphanum()
                     .min(1)
                     .required(),
 
-                averageRatings: Joi.number()
+                AverageRatings: Joi.number()
                     .integer()
                     .min(0)
                     .required(),
 
-                url: Joi.string()
+                Url: Joi.string()
                     .min(1)
                     .required(),
 
-                logo: Joi.string()
+                Logo: Joi.string()
                     .min(1)
                     .required()
             })
@@ -56,25 +56,25 @@ export class MerchantValidator {
                     .max(30)
                     .required(),
 
-                name: Joi.string()
+                MerchantName: Joi.string()
                     .min(1)
                     .required(),
 
-                address: Joi.string()
+                Address: Joi.string()
                     .alphanum()
                     .min(1)
                     .required(),
 
-                averageRatings: Joi.number()
+                AverageRatings: Joi.number()
                     .integer()
                     .min(0)
                     .required(),
 
-                url: Joi.string()
+                Url: Joi.string()
                     .min(1)
                     .required(),
 
-                logo: Joi.string()
+                Logo: Joi.string()
                     .min(1)
                     .required()
             })

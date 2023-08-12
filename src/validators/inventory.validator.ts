@@ -16,33 +16,33 @@ export class InventoryValidator {
                     .max(30)
                     .required(),
 
-                merchantId: Joi.string()
+                MerchantId: Joi.string()
                     .alphanum()
                     .min(1)
                     .max(10)
                     .required(),
 
-                batchNumber: Joi.string()
+                BatchNumber: Joi.string()
                     .alphanum()
                     .min(1)
                     .required(),
 
-                totalStock: Joi.number()
+                TotalStock: Joi.number()
                     .integer()
                     .min(0)
                     .required(),
 
-                currentStock: Joi.number()
+                CurrentStock: Joi.number()
                     .integer()
                     .min(0)
                     .required(),
 
-                units: Joi.number()
+                Units: Joi.number()
                     .integer()
                     .min(0)
                     .required(),
 
-                unitsOfMeasure: Joi.string()
+                UnitsOfMeasure: Joi.string()
                     .required()
             })
 
@@ -63,33 +63,33 @@ export class InventoryValidator {
                     .max(30)
                 ,
 
-                merchantId: Joi.string()
+                MerchantId: Joi.string()
                     .alphanum()
                     .min(1)
                     .max(10)
                 ,
 
-                batchNumber: Joi.string()
+                BatchNumber: Joi.string()
                     .alphanum()
                     .min(1)
                 ,
 
-                totalStock: Joi.number()
+                TotalStock: Joi.number()
                     .integer()
                     .min(0)
                 ,
 
-                currentStock: Joi.number()
+                CurrentStock: Joi.number()
                     .integer()
                     .min(0)
                 ,
 
-                units: Joi.number()
+                Units: Joi.number()
                     .integer()
                     .min(0)
                 ,
 
-                unitsOfMeasure: Joi.string()
+                UnitsOfMeasure: Joi.string()
 
             })
 

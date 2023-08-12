@@ -16,6 +16,6 @@ export interface ICustomerRepo{
 
     delete(id : uuid) : Promise<boolean>
 
-    login(req: express.Request)
+    login(req : express.Request)
 
 }

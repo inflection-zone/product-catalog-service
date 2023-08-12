@@ -16,11 +16,11 @@ export class InventoryRepo implements IInventoryRepo {
     create = async(model: InventoryDomainEntity) : Promise<InventoryDto> => {
         try{
             const entity = {
-                batchNumber : model.batchNumber,
-                totalStock : model.totalStock,
-                currentStock : model.currentStock,
-                units : model.units,
-                unitsOfMeasure : model.unitsOfMeasure
+                BatchNumber : model.BatchNumber,
+                TotalStock : model.TotalStock,
+                CurrentStock : model.CurrentStock,
+                Units : model.Units,
+                UnitsOfMeasure : model.UnitsOfMeasure
             }
     
             const inventory = await this._InventoryRepo.create(entity)
@@ -62,19 +62,19 @@ export class InventoryRepo implements IInventoryRepo {
             const inventory = await this._InventoryRepo.findOne({where : 
                 {id: id}})
 
-            if(updateModel.batchNumber != null){
-                inventory.batchNumber = updateModel.batchNumber;
+            if(updateModel.BatchNumber != null){
+                inventory.BatchNumber = updateModel.BatchNumber;
             }
-            if(updateModel.totalStock != null){
-                inventory.totalStock = updateModel.totalStock;
-            }if(updateModel.currentStock != null){
-                inventory.currentStock = updateModel.currentStock;
+            if(updateModel.TotalStock != null){
+                inventory.TotalStock = updateModel.TotalStock;
+            }if(updateModel.CurrentStock != null){
+                inventory.CurrentStock = updateModel.CurrentStock;
             }
-            if(updateModel.units != null){
-                inventory.units = updateModel.units;
+            if(updateModel.Units != null){
+                inventory.Units = updateModel.Units;
             }
-            if(updateModel.unitsOfMeasure!= null){
-                inventory.unitsOfMeasure = updateModel.unitsOfMeasure;
+            if(updateModel.UnitsOfMeasure!= null){
+                inventory.UnitsOfMeasure = updateModel.UnitsOfMeasure;
             }
 
             const record = await this._InventoryRepo.save(inventory)

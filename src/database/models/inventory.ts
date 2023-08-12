@@ -8,19 +8,19 @@ export class Inventory{
     id: string
 
     @Column()
-    batchNumber : string
+    BatchNumber : string
 
     @Column()
-    totalStock : number
+    TotalStock : number
 
     @Column()
-    currentStock : number
+    CurrentStock : number
 
     @Column()
-    units : number
+    Units : number
 
     @Column()
-    unitsOfMeasure : string
+    UnitsOfMeasure : string
 
     // @OneToOne( () => (Product))
     // @JoinColumn()
