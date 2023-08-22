@@ -22,7 +22,7 @@ export class CategoryController {
             const Message = "Successfully received Category info of all";
             ResponseHandler.success(req, res, Message, 200, category);
         } catch (error: any) {
-            ResponseHandler.handleError(req, res, error);
+            ResponseHandler.HandleError(req, res, error);
         }
     };
 
@@ -37,7 +37,7 @@ export class CategoryController {
             const Message = "Successfully received Category info by Id";
             ResponseHandler.success(req, res, Message, 200, category);
         } catch (error: any) {
-            ResponseHandler.handleError(req, res, error);
+            ResponseHandler.HandleError(req, res, error);
         }
     };
 
@@ -47,12 +47,12 @@ export class CategoryController {
             const category = await this.service.createCategory(req);
             console.log(category);
             if (category === null) {
-                throw new ApiError("Unable to create category", 400);
+                throw new ApiError( 400,"Unable to create category");
             }
             const Message = "Successfully created Category info";
             ResponseHandler.success(req, res, Message, 200, category);
         } catch (error: any) {
-            ResponseHandler.handleError(req, res, error);
+            ResponseHandler.HandleError(req, res, error);
         }
     };
 
@@ -69,7 +69,7 @@ export class CategoryController {
             const Message = "Successfully updated Category info";
             ResponseHandler.success(req, res, Message, 200, updateCategory);
         } catch (error: any) {
-            ResponseHandler.handleError(req, res, error);
+            ResponseHandler.HandleError(req, res, error);
         }
     };
 
@@ -86,7 +86,7 @@ export class CategoryController {
             const Message = "Successfully deleted Category info";
             ResponseHandler.success(req, res, Message, 200, response);
         } catch (error: any) {
-            ResponseHandler.handleError(req, res, error);
+            ResponseHandler.HandleError(req, res, error);
         }
     };
        private getUpdateModel(requestBody): ICategoryUpdateModel{

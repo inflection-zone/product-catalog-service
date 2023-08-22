@@ -1,11 +1,12 @@
-import {register as registerCategoryRoutes} from "../routes/category.routes"
-import { register as registerProductOfferRoutes } from "../routes/product.offer.routes";
-import { register as registerBrandRoutes } from "../routes/brand.routes";
-import { register as registerProductRoutes } from "../routes/product.routes";
+import express from 'express'
+import { register as customerRegister} from '../routes/customer.routes'
+import { register as merchantRegister} from '../routes/merchant.routes'
+import { register as inventoryRegister} from '../routes/inventory.routes'
+import { register as pmRegister} from '../routes/product.merchant.routes'
+import Application from '../app'
 
-
-import express from "express"
 export class Router {
+
     private _app: express.Application;
 
     constructor(app: express.Application) {
@@ -15,15 +16,22 @@ export class Router {
     public init = async (): Promise<boolean> => {
         return new Promise((resolve, reject) => {
             try {
-                this._app.get("/api/v1", (req, res) => {
-                    res.send({ message: "demo Api Service" })
+                this._app.get('/api/v1/', (req: express.Request, res: express.Response) => {
+                    res.send({
+                        message: "Product Catalog Service API Version 1"
+                    })
+
+                    customerRegister(this._app)
+                    merchantRegister(this._app)
+                    inventoryRegister(this._app)
+                    pmRegister(this._app)
+                    
+                    resolve(true)
+
                 })
-                registerProductRoutes(this._app);
-                registerProductOfferRoutes(this._app);        
-                registerCategoryRoutes(this._app);
-                registerBrandRoutes(this._app);   
             } catch (error) {
-                console.log("Error initializing the routes")
+                console.log(error)
+                reject(false)
             }
         })
     }

@@ -22,7 +22,7 @@ export class ProductOfferController {
             const Message = "Successfully received ProductOffer info of all";
             ResponseHandler.success(req, res, Message, 200, productOffer);
         } catch (error: any) {
-            ResponseHandler.handleError(req, res, error);
+            ResponseHandler.HandleError(req, res, error);
         }
     };
 
@@ -37,7 +37,7 @@ export class ProductOfferController {
             const Message = "Successfully received ProductOffer info by Id";
             ResponseHandler.success(req, res, Message, 200, productOffer);
         } catch (error: any) {
-            ResponseHandler.handleError(req, res, error);
+            ResponseHandler.HandleError(req, res, error);
         }
     };
 
@@ -47,12 +47,12 @@ export class ProductOfferController {
             const productOffer = await this.service.createProductOffer(req);
             console.log(productOffer);
             if (productOffer === null) {
-                throw new ApiError("Unable to create productOffer", 400);
+                throw new ApiError( 400,"Unable to create productOffer");
             }
             const Message = "Successfully created ProductOffer info";
             ResponseHandler.success(req, res, Message, 200, productOffer);
         } catch (error: any) {
-            ResponseHandler.handleError(req, res, error);
+            ResponseHandler.HandleError(req, res, error);
         }
     };
 
@@ -69,7 +69,7 @@ export class ProductOfferController {
             const Message = "Successfully updated ProductOffer info";
             ResponseHandler.success(req, res, Message, 200, updateProductOffer);
         } catch (error: any) {
-            ResponseHandler.handleError(req, res, error);
+            ResponseHandler.HandleError(req, res, error);
         }
     };
 
@@ -86,7 +86,7 @@ export class ProductOfferController {
             const Message = "Successfully deleted ProductOffer info";
             ResponseHandler.success(req, res, Message, 200, response);
         } catch (error: any) {
-            ResponseHandler.handleError(req, res, error);
+            ResponseHandler.HandleError(req, res, error);
         }
     };
     private getUpdateModel(requestBody): IProductOfferUpdateModel{

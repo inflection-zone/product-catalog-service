@@ -1,19 +1,29 @@
-import express from "express";
-import { CategoryController } from "../controllers/category.controller";
-import bodyParser from "body-parser";
+import express from 'express'
+import { CategoryController } from '../controllers/category.controller';
+//import loader
+//import authenticator
+import {authorize} from '../auth/authenticator'
 
-export const register = (app: express.Application) =>{
-const categoryRouter = express.Router();
+export const register = (app: express.Application) : void =>{
+    
+    const router = express.Router();
+    //authenticator
+    const controller = new CategoryController();
 
 
-const controller = new CategoryController()
-categoryRouter.get("/all",controller.get);
-categoryRouter.get("/:id",controller.getById);
-categoryRouter.post("/",controller.create);
-categoryRouter.put("/:id", controller.update);
-categoryRouter.delete("/:id", controller.del);
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}));
+    router.post('/', controller.create) // create customer
 
-app.use("/api/v1/category",categoryRouter)
+    //router.post('/login', controller.login)
+
+    router.get('/', authorize, controller.get) // get all customers
+
+    router.get('/:id', authorize, controller.getById) // get customer by id
+
+    router.put('/:id', authorize, controller.update) // update customer by id
+
+    router.delete('/:id', authorize, controller.del) // delete customer by id
+
+    //routes for api key?
+
+    app.use('/api/v1/category', router)
 }

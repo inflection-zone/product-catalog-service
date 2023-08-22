@@ -22,7 +22,7 @@ export class BrandController {
             const Message = "Successfully received Brand info of all";
             ResponseHandler.success(req, res, Message, 200, brand);
         } catch (error: any) {
-            ResponseHandler.handleError(req, res, error);
+            ResponseHandler.HandleError(req, res, error);
         }
     };
 
@@ -37,7 +37,7 @@ export class BrandController {
             const Message = "Successfully received Brand info by Id";
             ResponseHandler.success(req, res, Message, 200, brand);
         } catch (error: any) {
-            ResponseHandler.handleError(req, res, error);
+            ResponseHandler.HandleError(req, res, error);
         }
     };
     create = async (req: express.Request, res: express.Response) => {
@@ -46,12 +46,12 @@ export class BrandController {
             const brand = await this.service.createBrand(req);
             console.log(brand);
             if (brand === null) {
-                throw new ApiError("Unable to create brand", 400);
+                throw new ApiError(400,"Unable to create brand");
             }
             const Message = "Successfully created Brand info";
             ResponseHandler.success(req, res, Message, 200, brand);
         } catch (error: any) {
-            ResponseHandler.handleError(req, res, error);
+            ResponseHandler.HandleError(req, res, error);
         }
     };
 
@@ -68,7 +68,7 @@ export class BrandController {
             const Message = "Successfully updated Brand info";
             ResponseHandler.success(req, res, Message, 200, updateBrand);
         } catch (error: any) {
-            ResponseHandler.handleError(req, res, error);
+            ResponseHandler.HandleError(req, res, error);
         }
     };
 
@@ -85,7 +85,7 @@ export class BrandController {
             const Message = "Successfully deleted Brand info";
             ResponseHandler.success(req, res, Message, 200, response);
         } catch (error: any) {
-            ResponseHandler.handleError(req, res, error);
+            ResponseHandler.HandleError(req, res, error);
         }
     };
     private getUpdateModel(requestBody): IBrandUpdateModel {

@@ -6,35 +6,35 @@ export class ErrorHandler{
             message = message + ' ' + Array.isArray(errorMessages) ? errorMessages.join(''): errorMessages.toString();
             message = message.split('"').join('');
         }
-        throw new ApiError(message, 422);
+        throw new ApiError(422, message);
     }
     static throwDuplicateUserError =(message: any) =>{
-        throw new ApiError(message, 422);
+        throw new ApiError(422, message);
     }
     static throwNotFoundError = (message: any) =>{
-        throw new ApiError(message, 404);
+        throw new ApiError(404, message);
     }
     static throwUnauthorizedUserError = (message: any) =>{
-        throw new ApiError(message, 401);
+        throw new ApiError(401, message);
     }
     static throwForebiddenAccessError = (message:any) => {
-        throw new ApiError(message, 403);
+        throw new ApiError(403, message);
     }
 
     static throwDbAccessError = (message:any, error:any) => {
-        throw new ApiError(message, 503, error);
+        throw new ApiError(503 , message);
     }
 
     static throwConflictError = (message:any) => {
-        throw new ApiError(message, 409);
+        throw new ApiError( 409, message);
     }
 
     static throwFailedPreconditionError = (message:any) => {
-        throw new ApiError(message, 412);
+        throw new ApiError(412, message);
     }
 
     static throwInternalServerError = (message:any, error:any) => {
-        throw new ApiError(message, 500, error);
+        throw new ApiError(500, message);
     }
 
     static handleValidationError = (error: any) =>{

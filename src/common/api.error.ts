@@ -1,13 +1,21 @@
 export class ApiError extends Error{
     
-    Trace: any = null;
-    Code = 500;
-    
-    constructor(message: any, errorCode: any, error: any = null){
+    _errorMessage = "An unexpected error has occurred"
+    _httpErrorCode = 500
+
+    constructor(httpErrorCode: number, errorMessage: string){
         super();
-        console.log(`Message = ${message} Error code = ${errorCode}`)
-        this.message = message ?? 'An unexpected error has occured.';
-        this.Trace = error != null ? error.stack : '';
-        this.Code = errorCode ?? 500;
+        this._errorMessage = errorMessage;
+        this._httpErrorCode = httpErrorCode;
+        this.message = errorMessage;
+    }
+
+
+    public get ErrorMessage(){
+        return this._errorMessage;
+    }
+
+    public get HttpErrorCode(){
+        return this._httpErrorCode;
     }
 }

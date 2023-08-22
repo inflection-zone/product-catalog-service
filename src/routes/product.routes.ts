@@ -1,19 +1,29 @@
-import express from "express";
-import { ProductController } from "../controllers/product.controller";
-import bodyParser from "body-parser";
+import express from 'express'
+import { ProductController } from '../controllers/product.controller';
+//import loader
+//import authenticator
+import {authorize} from '../auth/authenticator'
 
-export const register = (app: express.Application) =>{
-const productRouter = express.Router();
+export const register = (app: express.Application) : void =>{
+    
+    const router = express.Router();
+    //authenticator
+    const controller = new ProductController();
 
-const controller = new ProductController()
 
-productRouter.get("/all", controller.get);
-productRouter.post("/", controller.create);
-productRouter.put("/:id", controller.update);
-productRouter.delete("/:id", controller.del);
-productRouter.get("/:id", controller.getById);
+    router.post('/', controller.create) // create customer
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}));
-app.use("/api/v1/product",productRouter)
+    //router.post('/login', controller.login)
+
+    router.get('/', authorize, controller.get) // get all customers
+
+    router.get('/:id', authorize, controller.getById) // get customer by id
+
+    router.put('/:id', authorize, controller.update) // update customer by id
+
+    router.delete('/:id', authorize, controller.del) // delete customer by id
+
+    //routes for api key?
+
+    app.use('/api/v1/product', router)
 }

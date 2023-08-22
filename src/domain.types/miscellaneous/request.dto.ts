@@ -1,10 +1,12 @@
+import { AnyTxtRecord } from "dns";
+import { IncomingHttpHeaders } from "http";
 
-
-export interface IRequestDto {
-    Method  : string;
-    Host    : string;
-    Body    : any;
-    Url     : string;
-    Params  : any;
+export interface RequestDto{
+    Method   : string;
+    Host     : string;
+    Body?    : any;
+    Headers? : IncomingHttpHeaders;
+    Url      : string;
+    Params   : any;
 
 }

@@ -23,7 +23,7 @@ export class ProductController {
             const Message = "Successfully received Product info of all";
             ResponseHandler.success(req, res, Message, 200, products);
         } catch (error: any) {
-            ResponseHandler.handleError(req, res, error);
+            ResponseHandler.HandleError(req, res, error);
         }
     };
 
@@ -38,7 +38,7 @@ export class ProductController {
             const Message = "Successfully received Product info by Id";
             ResponseHandler.success(req, res, Message, 200, product);
         } catch (error: any) {
-            ResponseHandler.handleError(req, res, error);
+            ResponseHandler.HandleError(req, res, error);
         }
     };
 
@@ -49,12 +49,12 @@ export class ProductController {
             const product = await this.service.createProduct(req);
             console.log("product");
             if (product === null) {
-                throw new ApiError("Unable to create product", 400);
+                throw new ApiError( 400,"Unable to create product");
             }
             const Message = "Successfully created Product info";
             ResponseHandler.success(req, res, Message, 200, product);
         } catch (error: any) {
-            ResponseHandler.handleError(req, res, error);
+            ResponseHandler.HandleError(req, res, error);
         }
     };
 
@@ -72,7 +72,7 @@ export class ProductController {
             const Message = "Successfully updated Product info";
             ResponseHandler.success(req, res, Message, 200, updateProduct);
         } catch (error: any) {
-            ResponseHandler.handleError(req, res, error);
+            ResponseHandler.HandleError(req, res, error);
         }
     };
 
@@ -89,7 +89,7 @@ export class ProductController {
             const Message = "Successfully deleted Product info";
             ResponseHandler.success(req, res, Message, 200, response);
         } catch (error: any) {
-            ResponseHandler.handleError(req, res, error);
+            ResponseHandler.HandleError(req, res, error);
         }
     };
     private getUpdateModel(requestBody): IProductUpdateModel{
