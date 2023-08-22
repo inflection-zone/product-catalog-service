@@ -19,6 +19,11 @@ export class InventoryService {
         this._InventoryRepo = new InventoryRepo()
     }
 
+    
+    public merchantLogin = async(req: express.Request)=>{
+        return await this._InventoryRepo.merchantLogin(req)
+    }
+
     public create = async (model: InventoryDomainEntity) => {
         return await this._InventoryRepo.create(model)
     }

@@ -6,7 +6,7 @@ import { InventoryDto } from "./inventory.dto";
 
 
 export interface InventorySearchFilters{
-    productId?: uuid;
+    //productId?: uuid;
     merchantId?: uuid;
     BatchNumber?: uuid;
     TotalStock?: number;

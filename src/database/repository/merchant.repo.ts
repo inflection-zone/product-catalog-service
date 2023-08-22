@@ -7,6 +7,9 @@ import { MerchantMapper } from "../mappers/merchant.mapper";
 import { SimpleConsoleLogger } from "typeorm";
 import { uuid } from "../../domain.types/miscellaneous/system.types";
 import { ApiError } from "../../common/api.error";
+import express from 'express'
+import { createJwtToken } from "../../auth/authenticator";
+import { ResponseHandler } from "../../common/response.handler";
 
 export class MerchantRepo implements IMerchantRepo {
 
@@ -17,6 +20,8 @@ export class MerchantRepo implements IMerchantRepo {
         try{
             const entity = {
                 MerchantName: model.MerchantName,
+                Email : model.Email,
+                Password : model.Password,
                 Address: model.Address,
                 AverageRatings : model.AverageRatings,
                 Url : model.Url,
@@ -28,6 +33,29 @@ export class MerchantRepo implements IMerchantRepo {
             const record = await this._MerchantRepo.save(Merchant)
             const dto = MerchantMapper.toDto(record)
             return dto
+        }catch(error){
+            throw new ApiError(500, error.message)
+        }
+    }
+
+
+    login = async(req: express.Request) => {
+        try{
+            const payload = {
+                Email : req.body.Email,
+
+            }
+
+            const merchant = await this._MerchantRepo.findOne({where:
+            {Email : payload.Email}})
+
+            if(merchant.Password = req.body.Password){
+                const token = createJwtToken(payload)
+                return token
+            }
+            else{
+                return "Invalid username or password"
+            }
         }catch(error){
             throw new ApiError(500, error.message)
         }

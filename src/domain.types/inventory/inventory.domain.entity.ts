@@ -4,7 +4,7 @@ import { uuid } from "../miscellaneous/system.types";
 
 export interface InventoryDomainEntity{
     
-    productId: uuid;
+    //productId: uuid;
     merchantId: uuid;
     BatchNumber: uuid;
     TotalStock: number;

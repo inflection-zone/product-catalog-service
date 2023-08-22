@@ -5,6 +5,9 @@ import { Customer } from "./models/customer"
 import { Inventory } from "./models/inventory"
 import { Merchant } from "./models/merchant"
 import { ProductMerchant } from "./models/product.merchant"
+import { CustomerReview } from './models/customer.review'
+import { ProductDiscount } from './models/product.discount'
+import { ProductImage } from './models/product.image'
 
 
 export class DatabaseConnectorTypeorm {
@@ -18,7 +21,8 @@ export class DatabaseConnectorTypeorm {
         database: "prodCat",
         synchronize: true,
         logging: true,
-        entities: [Customer, Merchant, Inventory, ProductMerchant],
+        entities: [Customer, Merchant, Inventory, ProductMerchant, CustomerReview, ProductDiscount,
+        ProductImage],
         migrations: ["src/migration/**/*.ts"],
         subscribers: [],
     })

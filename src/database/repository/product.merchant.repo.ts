@@ -7,6 +7,9 @@ import { ProductMerchantMapper } from "../mappers/product.merchant.mapper";
 import { SimpleConsoleLogger } from "typeorm";
 import { uuid } from "../../domain.types/miscellaneous/system.types";
 import { ApiError } from "../../common/api.error";
+import express from 'express'
+import { Merchant } from "../models/merchant";
+import { createJwtToken } from "../../auth/authenticator";
 
 export class ProductMerchantRepo implements IProductMerchantRepo {
 
@@ -27,6 +30,27 @@ export class ProductMerchantRepo implements IProductMerchantRepo {
             const dto = ProductMerchantMapper.toDto(record)
             return dto
         } catch (error) {
+            throw new ApiError(500, error.message)
+        }
+    }
+
+
+    login = async(req: express.Request) => {
+        try{
+            const payload = {
+                Email : req.body.email
+            }
+
+            const merchant = await Source.getRepository(Merchant).findOne({where:
+            {Email : payload.Email}})
+            if(merchant.Password === req.body.password){
+                const token = createJwtToken(payload)
+                return token
+            }
+            else{
+                throw new ApiError(500, "Invalid username or password")
+            }
+        }catch(error){
             throw new ApiError(500, error.message)
         }
     }

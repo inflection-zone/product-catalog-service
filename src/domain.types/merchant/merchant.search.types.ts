@@ -8,6 +8,7 @@ import { MerchantDto } from "./merchant.dto";
 export interface MerchantSearchFilters{
     merchantId?: uuid;
     Name?: string;
+    Email: string;
     Address?: string;
     AverageRatings?: number;
     Url?: string;

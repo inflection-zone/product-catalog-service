@@ -11,6 +11,12 @@ export class Merchant {
     MerchantName : string
 
     @Column()
+    Email : string
+
+    @Column()
+    Password : string
+
+    @Column()
     Address : string
 
     @Column()

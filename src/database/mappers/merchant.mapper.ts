@@ -13,6 +13,7 @@ export class MerchantMapper{
         const dto : MerchantDto = {
             merchantId : merchant.merchantId,
             MerchantName : merchant.MerchantName,
+            Email : merchant.Email,
             Address : merchant.Address,
             AverageRatings : merchant.AverageRatings,
             Url : merchant.Url,

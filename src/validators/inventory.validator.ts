@@ -10,16 +10,14 @@ export class InventoryValidator {
     static async validateCreateRequest(requestBody) {
         try {
             const schema = Joi.object({
-                productId: Joi.string()
-                    .alphanum()
-                    .min(1)
-                    .max(30)
-                    .required(),
+                // productId: Joi.string()
+                //     .alphanum()
+                //     .min(1)
+                //     .max(30)
+                //     .required(),
 
-                MerchantId: Joi.string()
-                    .alphanum()
+                merchantId: Joi.string()
                     .min(1)
-                    .max(10)
                     .required(),
 
                 BatchNumber: Joi.string()
@@ -63,7 +61,7 @@ export class InventoryValidator {
                     .max(30)
                 ,
 
-                MerchantId: Joi.string()
+                merchantId: Joi.string()
                     .alphanum()
                     .min(1)
                     .max(10)

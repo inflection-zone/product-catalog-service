@@ -16,4 +16,6 @@ export interface IProductMerchantRepo{
 
     delete(id : uuid) : Promise<boolean>
 
+    login(req: express.Request)
+
 }

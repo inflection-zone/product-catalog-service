@@ -37,6 +37,21 @@ export class ProductMerchantController{
     }
 
 
+    public login = async(req: express.Request, res: express.Response) => {
+        try{
+            const token = await this._service.login(req)
+            if(token == null){
+                throw new ApiError(500, "Invalid username or password")
+            }
+            ResponseHandler.success(req, res, "Logged in successfully", 201, 
+            {Token : token})
+
+        }catch(error){
+            ResponseHandler.HandleError(req, res, error)
+        }
+    }
+
+
 
     public get = async(req: express.Request, res: express.Response) => {
         try {

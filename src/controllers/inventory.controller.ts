@@ -19,6 +19,21 @@ export class InventoryController{
     }
 
 
+    public merchantLogin = async(req: express.Request, res: express.Response) => {
+        try{
+            const token = await this._service.merchantLogin(req)
+
+            if(token === null){
+                throw new ApiError(500, 'Authentication failed')
+            }
+            ResponseHandler.success(req, res, "Logged in successfully", 201,
+            {Token : token})
+        }catch(error){
+            ResponseHandler.HandleError(req, res, error)
+        }
+    }
+
+
     public create = async(req: express.Request, res: express.Response) => {
         try{
             const createModel = await InventoryValidator.validateCreateRequest(req.body)

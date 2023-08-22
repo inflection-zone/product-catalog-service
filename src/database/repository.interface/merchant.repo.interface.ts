@@ -16,4 +16,6 @@ export interface IMerchantRepo{
 
     delete(id : uuid) : Promise<boolean>
 
+    login(req: express.Request)
+
 }

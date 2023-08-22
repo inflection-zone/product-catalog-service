@@ -9,17 +9,19 @@ export const register = (app: express.Application) : void =>{
     //authenticator
     const controller = new ProductMerchantController();
 
-    router.post('/', controller.create) // create customer
+    router.post('/', controller.create) // create pm
 
-    router.get('/', controller.get) // get all customers
+    router.post('/login', controller.login) //login
 
-    router.get('/:id', controller.getById) // get customer by id
+    router.get('/', controller.get) // get all pms
 
-    router.put('/:id', controller.update) // update customer by id
+    router.get('/:id', controller.getById) // get pm by id
 
-    router.delete('/:id', controller.delete) // delete customer by id
+    router.put('/:id', controller.update) // update pm by id
+
+    router.delete('/:id', controller.delete) // delete pm by id
 
     //routes for api key?
 
-    app.use('/api/v1/customer', router)
+    app.use('/api/v1/productMerchant', router)
 }

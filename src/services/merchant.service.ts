@@ -24,6 +24,11 @@ export class MerchantService {
     }
 
 
+    public login = async (req: express.Request) => {
+        return await this._MerchantRepo.login(req)
+    }
+
+
     public get = async () => {
         return await this._MerchantRepo.get()
     }

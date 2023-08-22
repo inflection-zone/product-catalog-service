@@ -16,4 +16,6 @@ export interface IInventoryRepo{
 
     delete(id : uuid) : Promise<boolean>
 
+    merchantLogin(req: express.Request)
+
 }

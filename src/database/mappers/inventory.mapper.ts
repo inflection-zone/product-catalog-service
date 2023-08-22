@@ -9,7 +9,7 @@ export class InventoryMapper{
         }
 
         const dto : InventoryDto = {
-            productId : inventory.id,
+           // productId : inventory.id,
             merchantId : inventory.id,
             BatchNumber : inventory.BatchNumber,
             TotalStock : inventory.TotalStock,

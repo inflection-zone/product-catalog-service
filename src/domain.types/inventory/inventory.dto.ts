@@ -3,7 +3,7 @@ import { uuid } from "../miscellaneous/system.types";
 ////////////////////////////////////////////////////////////
 
 export interface InventoryDto {
-    productId: uuid;
+    //productId: uuid;
     merchantId: uuid;
     BatchNumber: uuid;
     TotalStock: number;

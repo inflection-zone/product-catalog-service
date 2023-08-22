@@ -38,6 +38,9 @@ export class CustomerController {
     public login = async (req: express.Request, res: express.Response) => {
         try {
             const token = await this._service.login(req)
+            if(token == null){
+                throw new ApiError(500, "Authentication failed")
+            }
             ResponseHandler.success(req, res, "Logged in successfully", 201, 
             {Token : token})
         } catch (error) {

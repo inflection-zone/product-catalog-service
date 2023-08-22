@@ -21,8 +21,9 @@ export class ProductMerchant{
     @Column()
     ShippingCharges: number
 
-    // @OneToMany(() => (Merchant), (product)=>product.id)
-    // merchantId: Merchant[]
+
+    @OneToMany(() => (Merchant), (product)=>product.merchantId)
+    merchantId: Merchant[]
 
     // @OneToOne(() => (Product))
     // productId: Product
