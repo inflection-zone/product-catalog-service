@@ -1,5 +1,5 @@
 import express from "express";
-import { ResponseDto } from "../domain types/miscellaneous/response.dto";
+import { IResponseDto } from "../domain.types/miscellaneous/response.dto";
 import {ApiError} from "./api.error";
 
 
@@ -13,7 +13,7 @@ export class ResponseHandler {
         data? : any,
        
     ){
-        const responseObject: ResponseDto = {
+        const responseObject: IResponseDto = {
             Status: "success",
             Message : message,
             HttpCode: httpCode ?? 200,
@@ -36,7 +36,7 @@ export class ResponseHandler {
         error?: Error
     ){
         const msg = error ? error.message : Message ? Message : "An error has occured.";
-        const responseObject: ResponseDto = {
+        const responseObject: IResponseDto = {
             Status: "failure",
             Message: msg,
             Request:  {

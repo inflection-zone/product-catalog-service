@@ -1,27 +1,27 @@
 
 import express from "express";
-import { productService } from "../services/product.services";
+import { ProductService } from "../services/product.services";
 import { ResponseHandler } from "../common/response.handler";
 import { ApiError } from "../common/api.error";
 import { ErrorHandler } from "../common/error.handler";
 import { ProductValidator } from "../validators/product.validator";
-import { ProductUpdateModel } from "../domain types/product/product.domain.types";
+import { IProductUpdateModel } from "../domain.types/product/product.domain.types";
 
-export class productController {
-    service: productService = null;
+export class ProductController {
+    service: ProductService = null;
     constructor() {
-        this.service = new productService();
+        this.service = new ProductService();
     }
 
     get = async (req: express.Request, res: express.Response) => {
         try {
-            let product = await this.service.getProduct();
-            if (product === null) {
+            let products = await this.service.Search();
+            if (products === null) {
                 ErrorHandler.throwNotFoundError("No record found");
             }
 
             const Message = "Successfully received Product info of all";
-            ResponseHandler.success(req, res, Message, 200, product);
+            ResponseHandler.success(req, res, Message, 200, products);
         } catch (error: any) {
             ResponseHandler.handleError(req, res, error);
         }
@@ -29,8 +29,8 @@ export class productController {
 
     getById = async (req: express.Request, res: express.Response) => {
         try {
-            let id: string = (req.params.id);
-            const product = await this.service.getProductById(id);
+            const id: string = req.params.id;
+            const product = await this.service.SearchById(id);
             console.log(product);
             if (product === null) {
                 ErrorHandler.throwNotFoundError("Product not found");
@@ -60,14 +60,14 @@ export class productController {
 
     update = async (req: express.Request, res: express.Response) => {
         try {
-            let id: string = (req.params.id);
-
-            const isPresent = await this.service.getProductById(id);
+            let id: string = (req.body.id);
+            const isPresent = await this.service.SearchById(id);
             if (isPresent === null) {
-                ErrorHandler.throwNotFoundError(`Product with id ${req.params.id} not found`);
+                ErrorHandler.throwNotFoundError(`Product with id ${req.body.id} not found`);
             }
-            //await ProductValidator.validateUpdateRequest(req.body);
-            const updateModel : ProductUpdateModel = this.getUpdateModel(req.body);
+            
+            await ProductValidator.validateUpdateRequest(req.body);
+            const updateModel : IProductUpdateModel = this.getUpdateModel(req.body);
             const updateProduct = await this.service.updateProduct(req);
             const Message = "Successfully updated Product info";
             ResponseHandler.success(req, res, Message, 200, updateProduct);
@@ -78,11 +78,11 @@ export class productController {
 
     del = async (req: express.Request, res: express.Response) => {
         try {
-            const id: string = (req.params.id);
-            const isPresent = await this.service.getProductById(id);
+            const id: string = (req.body.id);
+            const isPresent = await this.service.SearchById(id);
             if (isPresent === null) {
                 ErrorHandler.throwNotFoundError(
-                    `Product with id ${req.params.id} not found`
+                    `Product with id ${req.body.id} not found`
                 );
             }
             let response = await this.service.deleteProduct(req);
@@ -92,16 +92,16 @@ export class productController {
             ResponseHandler.handleError(req, res, error);
         }
     };
-    private getUpdateModel(requestBody): ProductUpdateModel{
-        const model : ProductUpdateModel={
-            name:requestBody.name,
-            description : requestBody.description,
-            categoryId : requestBody.categoryId,
-            brandId : requestBody.brandId, 
-            basePrice: requestBody.basePrice? parseInt(requestBody.basePrice):undefined,
-            taxes:requestBody.taxes? parseInt(requestBody.taxes):undefined,
-            manufacturerName: requestBody.manufacturerName,
-            manufacturerPartNumber:requestBody.manufacturerPartNumber
+    private getUpdateModel(requestBody): IProductUpdateModel{
+        const model : IProductUpdateModel={
+            Name:requestBody.Name,
+            Description : requestBody.Description,
+            CategoryId : requestBody.CategoryId,
+            BrandId : requestBody.BrandId, 
+            BasePrice: requestBody.BasePrice? parseInt(requestBody.BasePrice):undefined,
+            Taxes:requestBody.Taxes? parseInt(requestBody.Taxes):undefined,
+            ManufacturerName: requestBody.ManufacturerName,
+            ManufacturerPartNumber:requestBody.ManufacturerPartNumber
         };
         return model;
      }

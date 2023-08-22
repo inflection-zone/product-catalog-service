@@ -1,5 +1,5 @@
 
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
 import { Category } from './category.model';
 import { Brand } from './brand.model';
 import { ProductOffer } from './product.offer.model';
@@ -11,33 +11,35 @@ export class Product {
   id: string;
   
   @Column()
-  name: string;
+  Name: string;
 
   @Column()
-  description: string;
+  Description: string;
 
   @Column()
-  basePrice: number;
+  BasePrice: number;
 
   @Column()
-  taxes: number;
+  Taxes: number;
 
   @Column()
-  manufacturerName: string;
+  ManufacturerName: string;
 
-  @ManyToOne(() => Category, category => category.products) // many prod one category
-  category: Category;
-  categoryId: string;
+  @ManyToOne(() => Category) // many prod one category
+  @JoinColumn({name: "CategoryId"})
+  CategoryId: Category;
 
-  @ManyToOne(() => Brand, brand => brand.products) // many prod one brand
-  brand: Brand;
-  brandId: string;
+  @ManyToOne(() => Brand) // many prod one brand
+  @JoinColumn({name: "BrandId"})
+  BrandId: Brand;
+  
 
   @Column()
-  manufacturerPartNumber: string;
+  ManufacturerPartNumber: string;
 
-  @OneToMany(() => ProductOffer, (productOffer) => productOffer.product) 
-  productOffers: ProductOffer[]; 
+  @OneToMany(()=> (ProductOffer), (product) =>product.id) 
+  ProductId:ProductOffer[]; 
+    static Name: any;
    
 }
 

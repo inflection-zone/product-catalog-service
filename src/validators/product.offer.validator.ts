@@ -5,9 +5,9 @@ export class ProductOfferValidator {
     static async validateCreateRequest(requestBody: any) {
         try {
             const schema = Joi.object({
-                productId: Joi.string(),
-                title: Joi.string().min(2).max(50).required(),
-                details: Joi.string().min(2).max(200).required(),
+                ProductId: Joi.string(),
+                Title: Joi.string().min(2).max(50).required(),
+                Details: Joi.string().min(2).max(200).required(),
             });
             return await schema.validateAsync(requestBody);
         } catch (error) {
@@ -18,9 +18,9 @@ export class ProductOfferValidator {
     static async validateUpdateRequest(requestBody: any) {
         try {
             const schema = Joi.object({
-                productId: Joi.string().required(),
-                title: Joi.string().min(2).max(50).required(),
-                details: Joi.string().min(2).max(200).required(),
+                ProductId: Joi.string(),
+                Title: Joi.string().min(2).max(50).required(),
+                Details: Joi.string().min(2).max(200).required(),
             });
             return await schema.validateAsync(requestBody);
         } catch (error) {

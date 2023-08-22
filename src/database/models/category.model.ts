@@ -7,17 +7,17 @@ export class Category {
   id: string;
 
   @Column()
-  name: string;
+  Name: string;
 
   @Column()
-  description: string;
+  Description: string;
 
   @ManyToOne(() => Category)   // many child one category
-  parentCategory: Category;
-  parentCategoryId: string;
+  @JoinColumn({name:"ParentCategoryId"})
+  ParentCategoryId: Category;
+  
 
-  @OneToMany (() => Product, (product) => product.category)
-  products: Product[];
- 
+  @OneToMany(()=> (Category), (product) =>product.id) 
+  CategoryId:Category[];
 
 }

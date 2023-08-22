@@ -4,8 +4,8 @@ export class BrandValidator{
     static async validateCreateRequst(requestBody: any){
         try {
             const schema = Joi.object({
-            name:Joi.string().min(2).max(15).required(),
-            logoUrl:Joi.string().min(2).max(15).required(),
+            Name:Joi.string().min(2).max(15).required(),
+            LogoUrl:Joi.string().min(2).max(50).required(),
             });
             return await schema.validateAsync(requestBody);
         } catch (error) {
@@ -15,8 +15,8 @@ export class BrandValidator{
     static async validateUpdateRequst(requestBody: any){
         try {
             const schema = Joi.object({
-            name:Joi.string().min(2).max(15).required(),
-            logoUrl:Joi.string().min(2).max(15).required(),
+            Name:Joi.string().min(2).max(15).required(),
+            LogoUrl:Joi.string().min(2).max(50).required(),
             });
             return await schema.validateAsync(requestBody);
         } catch (error) {

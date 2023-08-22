@@ -7,11 +7,11 @@ export class Brand {
   id: string;
 
   @Column()
-  name: string;
+  Name: string;
 
   @Column({ type: "varchar", length: 255})
-  logoUrl: string;
+  LogoUrl: string;
 
-  @OneToMany(()=> Product, (product) => product.brand)
-  products:Product[];
+  @OneToMany(()=> (Brand), (product) =>product.id) 
+  BrandId:Brand[];
 }

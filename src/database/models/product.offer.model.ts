@@ -2,20 +2,20 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 't
 import { Product } from './product.model';
 
 
-@Entity({name:'product_offer'})  //snake_case 
-export class ProductOffer {      //camel_case
+@Entity({name:'product_offer'})   
+export class ProductOffer {      
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => Product, (product)=> product.productOffers) // many productOff one prod
-  product: Product;
-  productId: string;
+  @ManyToOne(() => Product) // many productOff one prod
+  @JoinColumn({name: "ProductId"})
+  ProductId: Product;
 
   @Column()
-  title: string;
+  Title: string;
 
   @Column()
-  details: string;
+  Details: string;
   
 }
 

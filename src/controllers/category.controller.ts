@@ -1,20 +1,20 @@
 import express from "express";
-import { categoryService } from "../services/category.services";
+import { CategoryService } from "../services/category.services";
 import { ResponseHandler } from "../common/response.handler";
 import { ApiError } from "../common/api.error";
 import { ErrorHandler } from "../common/error.handler";
 import { CategoryValidator } from "../validators/category.validator";
-import { CategoryUpdateModel } from "../domain types/category/category.domain.types";
+import { ICategoryUpdateModel } from "../domain.types/category/category.domain.types";
 
-export class categoryController {
-    service: categoryService = null;
+export class CategoryController {
+    service: CategoryService = null;
     constructor() {
-        this.service = new categoryService();
+        this.service = new CategoryService();
     }
 
     get = async (req: express.Request, res: express.Response) => {
         try {
-            let category = await this.service.getCategory();
+            let category = await this.service.Search();
             if (category === null) {
                 ErrorHandler.throwNotFoundError("No record found");
             }
@@ -29,7 +29,7 @@ export class categoryController {
     getById = async (req: express.Request, res: express.Response) => {
         try {
             let id: string = (req.params.id);
-            const category = await this.service.getCategoryById(id);
+            const category = await this.service.SearchCategoryById(id);
             console.log(category);
             if (category === null) {
                 ErrorHandler.throwNotFoundError("Category not found");
@@ -59,12 +59,12 @@ export class categoryController {
     update = async (req: express.Request, res: express.Response) => {
         try {
             let id: string = (req.params.id);
-            const isPresent = await this.service.getCategoryById(id);
+            const isPresent = await this.service.SearchCategoryById(id);
             if (isPresent === null) {
                 ErrorHandler.throwNotFoundError(`Category with id ${req.params.id} not found`);
             }
             await CategoryValidator.validateUpdateRequest(req.body);
-            const updateModel : CategoryUpdateModel = this.getUpdateModel(req.body);
+            const updateModel : ICategoryUpdateModel = this.getUpdateModel(req.body);
             const updateCategory = await this.service.updateCategory(req);
             const Message = "Successfully updated Category info";
             ResponseHandler.success(req, res, Message, 200, updateCategory);
@@ -76,7 +76,7 @@ export class categoryController {
     del = async (req: express.Request, res: express.Response) => {
         try {
             const id: string = (req.params.id);
-            const isPresent = await this.service.getCategoryById(id);
+            const isPresent = await this.service.SearchCategoryById(id);
             if (isPresent === null) {
                 ErrorHandler.throwNotFoundError(
                     `Category with id ${req.params.id} not found`
@@ -89,11 +89,11 @@ export class categoryController {
             ResponseHandler.handleError(req, res, error);
         }
     };
-       private getUpdateModel(requestBody): CategoryUpdateModel{
-        const model : CategoryUpdateModel={
-            name:requestBody.name,
-            description : requestBody.description,
-            parentCategoryId : requestBody.parentCategoryId 
+       private getUpdateModel(requestBody): ICategoryUpdateModel{
+        const model : ICategoryUpdateModel={
+            Name:requestBody.Name,
+            Description : requestBody.Description,
+            ParentCategoryId : requestBody.ParentCategoryId 
         };
         return model;
      }

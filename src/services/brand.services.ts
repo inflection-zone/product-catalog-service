@@ -3,97 +3,55 @@ import { Brand } from "../database/models/brand.model";
 import { AppDataSource } from "../database/data.source";
 import { BrandMapper } from "../database/mappers/brand.mapper";
 
-export class brandService {
+export class BrandService {
     constructor() { }
-    getBrand = async () => {
-        const response = await AppDataSource.manager.find(Brand);
-        return response;
+
+    Search = async () => {
+        var repo = AppDataSource.getRepository(Brand);
+        var records = await repo.find({ });
+        return records;
     }
 
-    getByIdBrand = async (id: string) => {
-        const response = await AppDataSource.manager.findOne(Brand, { 
-            where:
-            {
-                id:id
-            }
+    SearchBrandById = async (id: string) => {
+        var repo = AppDataSource.getRepository(Brand);
+        var records = await repo.find({
+            where : {
+                    id: id
+            },
         });
-        return BrandMapper.toDto(response);
+        return records;
     }
 
     createBrand = async (req: express.Request) => {
-        const brand = new Brand();
-        brand.name = req.body.name;
-        brand.logoUrl = req.body.logoUrl;
-        const response =await AppDataSource.manager.save(brand);
-        return BrandMapper.toDto(response);
+        var repo = AppDataSource.getRepository(Brand);
+        const newBrand = repo.create(req.body)
+        const createdBrand = await repo.save(newBrand)
+        return createdBrand;
     }
 
     updateBrand = async (req: express.Request) => {
         const id = req.params.id;
-        const brand = await AppDataSource.manager.findOne(Brand, {
-            where:
-            {
+        var repo = AppDataSource.getRepository(Brand);
+        var records = await repo.findOne({
+            where:{
                 id:id
             }
-        }) ;
-        brand.name = req.body.name;
-        brand.logoUrl = req.body.logoUrl;
-        const response =await AppDataSource.manager.save(brand);
-        return BrandMapper.toDto(response);
+        })
+        records.Name = req.body.Name;
+        records.LogoUrl = req.body.LogoUrl;
+        const updatedBrand = await repo.save(records);
+        return updatedBrand;
     }
 
     deleteBrand = async (req: express.Request) => {
         const id = req.params.id;
-        const brand = await AppDataSource.manager.findOne(Brand,{
-            where:
-            {
-                id:id
-            }
+        var repo = AppDataSource.getRepository(Brand);
+        var records = await repo.find({
+            where : {
+                    id: id
+            },
         });
-        const response = await AppDataSource.manager.remove(brand);
-        return BrandMapper.toDto(response);
+        const deletedBrand = await repo.remove(records);
+        return deletedBrand;
     }
 }
-
-
-
-
-
-// getBrand = async (req: express.Request) => {
-//     const response= AppDataSource.manager.find(Brand);
-//     return response
-// }
-// getByIdBrand = async (id: string) => {
-//     const response = AppDataSource.manager.findOne(Brand, {where:{id:id}})
-//     return response;
-// }
-// createBrand = async (req: express.Request) => {
-//     const brand = new Brand();
-//     brand.name = brandService.name;
-//     brand.logoUrl = req.body.logoUrl;
-//     const response = AppDataSource.manager.save(brand);
-//     return response;
-// }
-// updateBrand = async (req: express.Request) => {
-//     const id = req.params.id;
-//     const brand = await AppDataSource.manager.findOne(Brand,{where:{id:id}});
-//     brand.name = req.body.name;
-//     brand.logoUrl = req.body.logoUrl;
-//     const response = AppDataSource.manager.save(brand);
-//     return response;
-// }
-// deleteBrand = async (req: express.Request) => {
-//     const id = req.params.id;
-//     const brand = await AppDataSource.manager.findOne(Brand,{where:{id:id}});
-//     const response = AppDataSource.manager.remove(brand);
-//     return response;
-// }
-// }
-
-// deleteBrand = async (req: express.Request, id: string) => {
-    //     const brand = await AppDataSource.manager.findOne(Brand, { where: { id: id } });
-    //     if (!brand) {
-    //         throw new Error("Brand not found");
-    //     }
-    //     return AppDataSource.manager.remove(brand);
-    // }

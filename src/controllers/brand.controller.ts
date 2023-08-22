@@ -1,20 +1,20 @@
 import express from "express";
-import { brandService } from "../services/brand.services";
+import { BrandService } from "../services/brand.services";
 import { ResponseHandler } from "../common/response.handler";
 import { ApiError } from "../common/api.error";
 import { ErrorHandler } from "../common/error.handler";
 import { BrandValidator } from "../validators/brand.validator";
-import { BrandUpdateModel } from "../domain types/brand/brand.domain.types";
+import { IBrandUpdateModel } from "../domain.types/brand/brand.domain.types";
 
-export class brandController {
-    service: brandService = null;
+export class BrandController {
+    service: BrandService = null;
     constructor() {
-        this.service = new brandService();
+        this.service = new BrandService();
     }
 
     get = async (req: express.Request, res: express.Response) => {
         try {
-            let brand = await this.service.getBrand();
+            let brand = await this.service.Search();
             if (brand === null) {
                 ErrorHandler.throwNotFoundError("No record found");
             }
@@ -29,7 +29,7 @@ export class brandController {
     getById = async (req: express.Request, res: express.Response) => {
         try {
             let id: string = (req.params.id);
-            const brand = await this.service.getByIdBrand(id);
+            const brand = await this.service.SearchBrandById(id);
             console.log(brand);
             if (brand === null) {
                 ErrorHandler.throwNotFoundError("Brand not found");
@@ -58,12 +58,12 @@ export class brandController {
     update = async (req: express.Request, res: express.Response) => {
         try {
             let id: string = (req.params.id);
-            const isPresent = await this.service.getByIdBrand(id);
+            const isPresent = await this.service.SearchBrandById(id);
             if (isPresent === null) {
                 ErrorHandler.throwNotFoundError(`Brand with id ${req.params.id} not found`);
             }
             await BrandValidator.validateUpdateRequst(req.body);
-            const updateModel: BrandUpdateModel = this.getUpdateModel(req.body);
+            const updateModel: IBrandUpdateModel = this.getUpdateModel(req.body);
             const updateBrand = await this.service.updateBrand(req);
             const Message = "Successfully updated Brand info";
             ResponseHandler.success(req, res, Message, 200, updateBrand);
@@ -75,7 +75,7 @@ export class brandController {
     del = async (req: express.Request, res: express.Response) => {
         try {
             const id: string = (req.params.id);
-            const isPresent = await this.service.getByIdBrand(id);
+            const isPresent = await this.service.SearchBrandById(id);
             if (isPresent === null) {
                 ErrorHandler.throwNotFoundError(
                     `Brand with id ${req.params.id} not found`
@@ -88,10 +88,10 @@ export class brandController {
             ResponseHandler.handleError(req, res, error);
         }
     };
-    private getUpdateModel(requestBody): BrandUpdateModel {
-        const model: BrandUpdateModel = {
-            name: requestBody.name,
-            logoUrl: requestBody.logoUrl
+    private getUpdateModel(requestBody): IBrandUpdateModel {
+        const model: IBrandUpdateModel = {
+            Name: requestBody.name,
+            LogoUrl: requestBody.logoUrl
         };
         return model;
     }

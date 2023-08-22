@@ -1,10 +1,10 @@
 import express from "express";
 import bodyParser from "body-parser";
-import { brandController } from "../controllers/brand.controller"; 
+import { BrandController } from "../controllers/brand.controller"; 
 export const register = (app: express.Application) =>{
 const brandRouter = express.Router();
 
-const controller= new brandController()
+const controller= new BrandController()
 brandRouter.get("/all", controller.get);
 brandRouter.get("/:id", controller.getById);
 brandRouter.post("/", controller.create);

@@ -2,55 +2,68 @@ import express from "express";
 import { Category } from "../database/models/category.model";
 import { AppDataSource } from "../database/data.source";
 import { CategoryMapper } from "../database/mappers/category.mapper";
+import { ApiError } from "../common/api.error";
 
-export class categoryService {
+export class CategoryService {
     constructor() { }
 
-    getCategory = async () => {
-        const response = await AppDataSource.manager.find(Category);
-        return response;
-    }
-
-    getCategoryById = async (id: string) => {
-        const response = await AppDataSource.manager.findOne(Category, {
-            where: {
-                id: id
+    Search = async () => {
+        var repo = AppDataSource.getRepository(Category);
+        var records = await repo.find({
+            relations: {
+                ParentCategoryId : true,
             }
         });
-        return CategoryMapper.toDto(response);
+        return records;
+    }
+
+    SearchCategoryById = async (id:string) => {
+        var repo = AppDataSource.getRepository(Category);
+        var records = await repo.find({
+            where : {
+                    id: id
+            },
+            relations: {
+                ParentCategoryId : true
+            }
+        });
+        return records;
     }
 
     createCategory = async (req: express.Request) => {
-        const category = new Category();
-        category.name = req.body.name;
-        category.description = req.body.description;
-        category.parentCategoryId = req.body.parentCategoryId;
-        const response = await AppDataSource.manager.save(category);
-        return CategoryMapper.toDto(response);
+        var repo = AppDataSource.getRepository(Category);
+        const newCategory = repo.create(req.body)
+        const createdProduct = await repo.save(newCategory)
+        return createdProduct;
     }
 
     updateCategory = async (req: express.Request) => {
         const id = req.params.id;
-        const category = await AppDataSource.manager.findOne(Category, {
-            where: {
-                id: id
+        var repo = AppDataSource.getRepository(Category);
+        var records = await repo.findOne({
+            where:{
+                id:id
             }
-        });
-        category.name = req.body.name;
-        category.description = req.body.description;
-        category.parentCategoryId = req.body.parentCategoryId;
-        const response = await AppDataSource.manager.save(category);
-        return CategoryMapper.toDto(response);
+        })
+        records.Name = req.body.Name;
+        records.Description = req.body.Description;
+        records.ParentCategoryId = req.body.ParentCategoryId;
+        const updatedProduct = await repo.save(records);
+        return updatedProduct;
     }
-
+    
     deleteCategory = async (req: express.Request) => {
         const id = req.params.id;
-        const category = await AppDataSource.manager.findOne(Category, {
-            where: {
-                id: id
+        var repo = AppDataSource.getRepository(Category);
+        var records = await repo.find({
+            where : {
+                    id: id
+            },
+            relations: {
+                ParentCategoryId : true
             }
         });
-        const response = await AppDataSource.manager.remove(category);
-        return CategoryMapper.toDto(response);
+        const deletedProduct = await repo.remove(records);
+        return deletedProduct;
     }
 }

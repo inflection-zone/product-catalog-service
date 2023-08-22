@@ -1,10 +1,10 @@
 import express from "express";
 import bodyParser from "body-parser";
-import { productOfferController } from "../controllers/product.offer.controller";
+import { ProductOfferController } from "../controllers/product.offer.controller";
 export const register = (app: express.Application) =>{
 const productOfferRouter = express.Router();
 
-const controller= new productOfferController()
+const controller= new ProductOfferController()
 productOfferRouter.get("/all", controller.get);
 productOfferRouter.get("/:id",controller.getById);
 productOfferRouter.post("/", controller.create);

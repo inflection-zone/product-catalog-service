@@ -1,20 +1,20 @@
 import express from "express";
-import { productOfferService } from "../services/product.offer.services";
+import { ProductOfferService } from "../services/product.offer.services";
 import { ResponseHandler } from "../common/response.handler";
 import { ApiError } from "../common/api.error";
 import { ErrorHandler } from "../common/error.handler";
 import { ProductOfferValidator } from "../validators/product.offer.validator";
-import { ProductOfferUpdateModel } from "../domain types/productOffer/product.offer.types";
+import { IProductOfferUpdateModel } from "../domain.types/product.offer/product.offer.types";
 
-export class productOfferController {
-    service: productOfferService = null;
+export class ProductOfferController {
+    service: ProductOfferService = null;
     constructor() {
-        this.service = new productOfferService();
+        this.service = new ProductOfferService();
     }
 
     get = async (req: express.Request, res: express.Response) => {
         try {
-            let productOffer = await this.service.getProductOffer();
+            let productOffer = await this.service.Search();
             if (productOffer === null) {
                 ErrorHandler.throwNotFoundError("No record found");
             }
@@ -29,7 +29,7 @@ export class productOfferController {
     getById = async (req: express.Request, res: express.Response) => {
         try {
             let id: string = (req.params.id);
-            const productOffer = await this.service.getProductOfferById(id);
+            const productOffer = await this.service.SearchOfferById(id);
             console.log(productOffer);
             if (productOffer === null) {
                 ErrorHandler.throwNotFoundError("ProductOffer not found");
@@ -59,12 +59,12 @@ export class productOfferController {
     update = async (req: express.Request, res: express.Response) => {
         try {
             let id: string = (req.params.id);
-            const isPresent = await this.service.getProductOfferById(id);
+            const isPresent = await this.service.SearchOfferById(id);
             if (isPresent === null) {
                 ErrorHandler.throwNotFoundError(`ProductOffer with id ${req.params.id} not found`);
             }
             await ProductOfferValidator.validateUpdateRequest(req.body);
-           const updateModel : ProductOfferUpdateModel = this.getUpdateModel(req.body);
+           const updateModel : IProductOfferUpdateModel = this.getUpdateModel(req.body);
             const updateProductOffer = await this.service.updateProductOffer(req);
             const Message = "Successfully updated ProductOffer info";
             ResponseHandler.success(req, res, Message, 200, updateProductOffer);
@@ -76,7 +76,7 @@ export class productOfferController {
     del = async (req: express.Request, res: express.Response) => {
         try {
             const id: string = (req.params.id);
-            const isPresent = await this.service.getProductOfferById(id);
+            const isPresent = await this.service.SearchOfferById(id);
             if (isPresent === null) {
                 ErrorHandler.throwNotFoundError(
                     `ProductOffer with id ${req.params.id} not found`
@@ -89,11 +89,11 @@ export class productOfferController {
             ResponseHandler.handleError(req, res, error);
         }
     };
-    private getUpdateModel(requestBody): ProductOfferUpdateModel{
-        const model : ProductOfferUpdateModel={
-            title: requestBody.title,
-            details: requestBody.details,
-            productId : requestBody.productId
+    private getUpdateModel(requestBody): IProductOfferUpdateModel{
+        const model : IProductOfferUpdateModel={
+            Title: requestBody.Title,
+            Details: requestBody.Details,
+            ProductId : requestBody.ProductId
         };
         return model;
      }

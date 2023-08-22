@@ -1,6 +1,6 @@
 
 
-export interface RequestDto {
+export interface IRequestDto {
     Method  : string;
     Host    : string;
     Body    : any;

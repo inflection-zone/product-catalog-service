@@ -3,65 +3,75 @@ import { Product } from "../database/models/product.model";
 import { AppDataSource } from "../database/data.source";
 import { ProductMapper } from "../database/mappers/product.mapper";
 
-export class productService {
+
+export class ProductService {
     constructor() { }
-
-    getProduct = async () => {
-        const response = await AppDataSource.manager.find(Product);
-        return response;
-    }
-
-    getProductById = async (id: string) => {
-        const response = await AppDataSource.manager.findOne(Product, {
-            where: {
-                id: id
+    Search = async () => {
+        var repo = AppDataSource.getRepository(Product);
+        var records = await repo.find({
+            relations: {
+                CategoryId : true,
+                BrandId: true
             }
         });
-        return ProductMapper.toDto(response);
+        return records;
+    }
+
+    SearchById = async (id:string) => {
+        var repo = AppDataSource.getRepository(Product);
+        var records = await repo.find({
+            where : {
+                    id: id
+            },
+            relations: {
+                CategoryId : true,
+                BrandId: true
+            }
+        });
+        return records;
     }
 
     createProduct = async (req: express.Request) => {
-        const product = new Product();
-        product.name = req.body.name;
-        product.description = req.body.description;
-        product.categoryId = req.body.categoryId;
-        product.brandId = req.body.brandId;
-        product.basePrice = parseInt(req.body.basePrice);
-        product.taxes = parseInt(req.body.taxes);
-        product.manufacturerName = req.body.manufacturerName;
-        product.manufacturerPartNumber = req.body.manufacturerPartNumber;
-        const response = await AppDataSource.manager.save(product);
-        return ProductMapper.toDto(response);
+        var repo = AppDataSource.getRepository(Product);
+        const newProduct = repo.create(req.body)
+        const createdProduct = await repo.save(newProduct)
+        return createdProduct;
     }
 
     updateProduct = async (req: express.Request) => {
         const id = req.params.id;
-        const product = await AppDataSource.manager.findOne(Product, {
-            where: {
-                id: id
+        var repo = AppDataSource.getRepository(Product);
+        var records = await repo.findOne({
+            where:{
+                id:id
             }
-        });
-        product.name = req.body.name;
-        product.description = req.body.description;
-        product.categoryId = req.body.categoryId;
-        product.brandId = req.body.brandId;
-        product.basePrice = parseInt(req.body.basePrice);
-        product.taxes = parseInt(req.body.taxes);
-        product.manufacturerName = req.body.manufacturerName;
-        product.manufacturerPartNumber = req.body.manufacturerPartNumber;
-
-        const response = await AppDataSource.manager.save(product);
-        return ProductMapper.toDto(response);
+        })
+        //Object.assign(records,req.body)
+        records.Name = req.body.Name;
+        records.Description = req.body.Description;
+        records.CategoryId = req.body.CategoryId;
+        records.BrandId = req.body.BrandId;
+        records.BasePrice = parseInt(req.body.BasePrice);
+        records.Taxes = parseInt(req.body.Taxes);
+        records.ManufacturerName = req.body.ManufacturerName;
+        records.ManufacturerPartNumber = req.body.ManufacturerPartNumber;
+        const updatedProduct = await repo.save(records);
+        return updatedProduct;
     }
 
     deleteProduct = async (req: express.Request) => {
         const id = req.params.id;
-        const product = await AppDataSource.manager.findOne(Product, {
-            where: {
-                id: id
+        var repo = AppDataSource.getRepository(Product);
+        var records = await repo.find({
+            where : {
+                    id: id
+            },
+            relations: {
+                CategoryId : true,
+                BrandId: true
             }
         });
-        const response = await AppDataSource.manager.remove(product);
-        return ProductMapper.toDto(response);
+        const deletedProduct = await repo.remove(records);
+        return deletedProduct;
     }
 }

@@ -1,12 +1,12 @@
 import express from "express";
-import { categoryController } from "../controllers/category.controller";
+import { CategoryController } from "../controllers/category.controller";
 import bodyParser from "body-parser";
 
 export const register = (app: express.Application) =>{
 const categoryRouter = express.Router();
 
 
-const controller = new categoryController()
+const controller = new CategoryController()
 categoryRouter.get("/all",controller.get);
 categoryRouter.get("/:id",controller.getById);
 categoryRouter.post("/",controller.create);
