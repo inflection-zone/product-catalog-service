@@ -1,6 +1,4 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm'
-import { Product } from './product.model';
-
 @Entity({name: 'product_details'})
 export class ProductDetails{
 

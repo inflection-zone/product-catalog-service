@@ -19,14 +19,10 @@ export default class Application {
     }
     start = async ()=>{
         try{
-            console.log("error  0")
             await AppDataSource.initialize(); 
-            console.log("error  1")
             this._router.init()
-            console.log("error 2")
             this.listen()
-            console.log("error 3")
-        }
+             }
         catch(error) {
             console.log("error 123"+error.message)
 
