@@ -26,5 +26,5 @@ export const register = (app: express.Application) : void =>{
 
     //routes for api key?
 
-    app.use('/api/v1/customer', router)
+    app.use('/api/v1/productDiscount', router)
 }
