@@ -4,7 +4,7 @@ import { Feature } from './feature';
 export class ProductFeature{
 
     @PrimaryGeneratedColumn('uuid')
-    productFeaturesid: string;
+    productFeatureid: string;
 
 //     @ManyToOne(() => Product) 
 //   @JoinColumn({name: "ProductId"})

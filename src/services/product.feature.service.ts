@@ -16,7 +16,7 @@ export class ProductFeatureService {
         var repo = Source.getRepository(ProductFeature);
         var records = await repo.find({
             where : {
-                    productFeaturesid: id
+                    productFeatureid: id
             },
             // relations: {
             //    // ProductId : true,
@@ -42,7 +42,7 @@ export class ProductFeatureService {
         var repo = Source.getRepository(ProductFeature);
         var records = await repo.findOne({
             where:{
-                productFeaturesid:id
+                productFeatureid:id
             }
         })
         records.productId = req.body.ProductId;
@@ -56,7 +56,7 @@ export class ProductFeatureService {
             var repo = Source.getRepository(ProductFeatures);
             var records = await repo.find({
                 where : {
-                        productFeaturesid: id
+                        productFeatureid: id
                 },
                 // relations: {
                 //    // ProductId : true,

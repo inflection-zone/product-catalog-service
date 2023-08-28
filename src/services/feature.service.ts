@@ -43,8 +43,7 @@ export class FeatureService {
     }
 
     updateFeature = async (req: express.Request) => {
-        try {
-            const id = req.params.id;
+        const id = req.params.id;
             const record = await this._repo.findOne({
                 where: {
                     featureId: id
@@ -63,7 +62,6 @@ export class FeatureService {
 
             const updatedFeature = await this._repo.save(record);
             return updatedFeature;
-        }
         
     }
 

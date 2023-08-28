@@ -1,4 +1,6 @@
 import express from 'express'
+import {register as brandRegister} from '../routes/brand.routes'
+import {register as categoryRegister} from '../routes/category.routes'
 import { register as customerReviewRegister} from '../routes/customer.review.routes'
 import { register as customerRegister} from '../routes/customer.routes'
 import { register as featureRegister} from '../routes/feature.routes'
@@ -9,6 +11,8 @@ import { register as productDiscountRegister} from '../routes/product.discount.r
 import { register as productFeaturesRegister} from '../routes/product.feature.routes'
 import { register as productImageRegister} from '../routes/product.image.routes'
 import { register as productMerchantRegister} from '../routes/product.merchant.routes'
+import { register as productOfferRegister} from '../routes/product.offer.routes'
+import { register as productRegister} from '../routes/product.routes'
 
 import Application from '../app'
 
@@ -28,6 +32,8 @@ export class Router {
                         message: "Product Catalog Service API Version 1"
                     });
 
+                    brandRegister(this._app);
+                    categoryRegister(this._app);
                     customerReviewRegister(this._app);
                     customerRegister(this._app);
                     featureRegister(this._app);
@@ -38,6 +44,8 @@ export class Router {
                     productFeaturesRegister(this._app);
                     productImageRegister(this._app);
                     productMerchantRegister(this._app);
+                    productOfferRegister(this._app);
+                    productRegister(this._app);
                     
                     resolve(true);
 

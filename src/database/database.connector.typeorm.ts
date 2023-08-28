@@ -11,6 +11,11 @@ import { ProductImage } from './models/product.image'
 import { Feature } from './models/feature'
 import {ProductDetails} from './models/product.details'
 import {ProductFeature} from './models/product.feature'
+import { Product } from "./models/product.model"
+import { ProductOffer } from "./models/product.offer.model"
+import { Brand } from "./models/brand.model"
+import { Category } from "./models/category.model"
+
 
 export class DatabaseConnectorTypeorm {
 
@@ -23,8 +28,8 @@ export class DatabaseConnectorTypeorm {
         database: "prodCat",
         synchronize: true,
         logging: true,
-        entities: [Customer, Merchant, Inventory, ProductMerchant, CustomerReview, ProductDiscount,
-        ProductImage, Feature, ProductDetails, ProductFeature],
+        entities: [Brand, Category, Customer, CustomerReview, Feature, Inventory, Merchant, Product,
+        ProductDetails, ProductDiscount, ProductFeature, ProductImage, ProductMerchant, ProductOffer],
         migrations: ["src/migration/**/*.ts"],
         subscribers: [],
     })

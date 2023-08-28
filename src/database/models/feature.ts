@@ -1,5 +1,6 @@
 import {Entity, PrimaryGeneratedColumn, Column,ManyToOne, BaseEntity, JoinColumn } from 'typeorm'
-import { ProductFeatures } from './product.feature';
+import { ProductFeature } from './product.feature';
+import { uuid } from '../../domain.types/miscellaneous/system.types';
 
 @Entity({name:'feature'})
 export class Feature{
@@ -8,7 +9,7 @@ export class Feature{
 //     @ManyToOne(() => ProductFeatures) 
 //    @JoinColumn({name: "FeatureId"})
 //     FeatureId: ProductFeatures;
-    featureId: string;
+    featureId: uuid;
 
     @Column()
     Name: string

@@ -12,7 +12,7 @@ export class ProductDiscountMapper {
             merchantId: productDiscount.merchantId,
             DiscountType: productDiscount.DiscountType,
             Discount: productDiscount.Discount,
-            DiscountForVolume: productDiscount.DiscountForVolumn,
+            DiscountForVolume: productDiscount.DiscountForVolume,
         };
         return dto;
     }
