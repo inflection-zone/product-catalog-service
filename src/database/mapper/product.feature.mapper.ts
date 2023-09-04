@@ -1,4 +1,4 @@
-import { ProductFeatureDto } from "../../domain types/productfeature/product.feature.domain.type";
+import { ProductFeatureDto } from "../../domain types/productfeature/product.feature.dto";
 import { ProductFeatures } from "../models/product.feature.model"; 
 
 export class ProductFeatureMapper {
@@ -9,8 +9,9 @@ export class ProductFeatureMapper {
         const dto: ProductFeatureDto = {
             //ProductId: productFeature.ProductId.id,
             ProductId: productFeature.ProductId,
-            FeatureId: productFeature.FeatureId.id,
+            FeatureId: productFeature.FeatureId.featureId,
         };
         return dto;
     }
 }
+      

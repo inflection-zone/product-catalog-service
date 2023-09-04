@@ -4,17 +4,17 @@ import { ResponseHandler } from "../common/response.handler";
 import { ApiError } from "../common/api.error";
 import { ErrorHandler } from "../common/error.handler";
 import { ProductDetailsValidator } from "../validators/product.details.validator";
-import { IProductDetailsUpdateModel } from "../domain types/productdetails/product.details.domain.type";
+import { IProductDetailsUpdateModel } from "../domain types/productdetails/product.details.domain.entity";
 
 export class ProductDetailsController {
-    service: ProductDetailsService = null;
+    _service: ProductDetailsService;
     constructor() {
-        this.service = new ProductDetailsService(); 
+        this._service = new ProductDetailsService(); 
     }
 
     get = async (req: express.Request, res: express.Response) => {
         try {
-            let productDetails = await this.service.Search(); 
+            let productDetails = await this._service.Search(); 
             if (productDetails === null) {
                 ErrorHandler.throwNotFoundError("No record found");
             }
@@ -29,7 +29,7 @@ export class ProductDetailsController {
     getById = async (req: express.Request, res: express.Response) => {
         try {
             let id: string = req.params.id; 
-            const productDetails = await this.service.SearchProductDetailsById(id); 
+            const productDetails = await this._service.SearchProductDetailsById(id); 
             console.log(productDetails);
             if (productDetails === null) {
                 ErrorHandler.throwNotFoundError("ProductDetails not found");
@@ -43,10 +43,10 @@ export class ProductDetailsController {
     create = async (req: express.Request, res: express.Response) => {
         try {
             await ProductDetailsValidator.validateCreateRequest(req.body); 
-            const productDetails = await this.service.createProductDetails(req); 
+            const productDetails = await this._service.createProductDetails(req); 
             console.log(productDetails);
             if (productDetails === null) {
-                throw new ApiError("Unable to create productDetails", 400);
+                throw new ApiError(400,"Unable to create productDetails");
             }
             const Message = "Successfully created ProductDetails info";
             ResponseHandler.success(req, res, Message, 200, productDetails);
@@ -58,13 +58,13 @@ export class ProductDetailsController {
     update = async (req: express.Request, res: express.Response) => {
         try {
             let id: string = req.params.id; 
-            const isPresent = await this.service.SearchProductDetailsById(id); 
+            const isPresent = await this._service.SearchProductDetailsById(id); 
             if (isPresent === null) {
                 ErrorHandler.throwNotFoundError(`ProductDetails with id ${req.params.id} not found`);
             }
             await ProductDetailsValidator.validateUpdateRequest(req.body);
             const updateModel: IProductDetailsUpdateModel = this.getUpdateModel(req.body);  
-            const updateProductDetails = await this.service.updateProductDetails(req); 
+            const updateProductDetails = await this._service.updateProductDetails(req); 
             const Message = "Successfully updated ProductDetails info";
             ResponseHandler.success(req, res, Message, 200, updateProductDetails);
         } catch (error: any) {
@@ -75,13 +75,13 @@ export class ProductDetailsController {
     del = async (req: express.Request, res: express.Response) => {
         try {
             const id: string = req.params.id; 
-            const isPresent = await this.service.SearchProductDetailsById(id);
+            const isPresent = await this._service.SearchProductDetailsById(id);
             if (isPresent === null) {
                 ErrorHandler.throwNotFoundError(
                     `ProductDetails with id ${req.params.id} not found`
                 );
             }
-            let response = await this.service.deleteProductDetails(req); 
+            let response = await this._service.deleteProductDetails(req); 
             const Message = "Successfully deleted ProductDetails info";
             ResponseHandler.success(req, res, Message, 200, response);
         } catch (error: any) {
@@ -103,4 +103,7 @@ export class ProductDetailsController {
         };
         return model;
     }
-}
+}           
+    
+        
+         

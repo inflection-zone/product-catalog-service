@@ -41,4 +41,5 @@ export class ProductDetailsValidator {
             ErrorHandler.handleValidationError(error);
         }
     }
-}
+}               
+              

@@ -1,4 +1,4 @@
-import { FeatureDto } from "../../domain types/feature/feature.domain.type";
+import { FeatureDto } from "../../domain types/feature/feature.dto";
 import { Feature } from "../models/feature.model";
 
 export class FeatureMapper {
@@ -7,7 +7,7 @@ export class FeatureMapper {
             return null;
         }
         const dto: FeatureDto = {
-            id: feature.id,
+            featureId: feature.featureId,
             Name: feature.Name,
             Description: feature.Description,
             ImageUrl: feature.ImageUrl,
@@ -15,3 +15,4 @@ export class FeatureMapper {
         return dto;
     }
 }
+   

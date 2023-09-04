@@ -4,7 +4,7 @@ import { Feature } from './feature.model';
 export class ProductFeatures{
 
     @PrimaryGeneratedColumn('uuid')
-    id: string;
+    productFeatureid: string;
 
 //     @ManyToOne(() => Product) 
 //   @JoinColumn({name: "ProductId"})
@@ -16,5 +16,6 @@ export class ProductFeatures{
     @JoinColumn({name: "FeatureId"})
     FeatureId: Feature
 
-
-}
+    }
+    
+   

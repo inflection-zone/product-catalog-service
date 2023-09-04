@@ -1,4 +1,4 @@
-import { ProductDetailsDto } from "../../domain types/productdetails/product.details.domain.type";
+import { ProductDetailsDto } from "../../domain types/productdetails/product.details.dto";
 import { ProductDetails } from "../models/product.details.model"; 
 
 export class ProductDetailsMapper {
@@ -7,7 +7,7 @@ export class ProductDetailsMapper {
             return null;
         }
         const dto: ProductDetailsDto = {
-            //ProductId: productDetails.ProductId.id,
+            // ProductId: productDetails.ProductId.id,
             ProductId: productDetails.ProductId,
             Information: productDetails.Information,
             AdditionalInformation: productDetails.AdditionalInformation,
@@ -22,3 +22,5 @@ export class ProductDetailsMapper {
         return dto;
     }
 }
+           
+           

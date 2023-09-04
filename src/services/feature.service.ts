@@ -3,23 +3,23 @@ import { Feature } from "../database/models/feature.model";
 import { AppDataSource } from "../database/data-source";
 import { FeatureMapper } from "../database/mapper/feature.mapper";
 export class FeatureService {
-    constructor() { }
+    private _repo = AppDataSource.getRepository(Feature)
+    // constructor() { }
 
     Search = async () => {
-        var repo = AppDataSource.getRepository(Feature);
-        var records = await repo.find({
+          var record = await this._repo.find({
             // relations: {
             //     ProductId : true
             // }
         });
-        return records;
+        return record;
     }
 
     SearchFeatureById = async (id:string) => {
         var repo = AppDataSource.getRepository(Feature);
         var records = await repo.find({
             where : {
-                    id: id
+                featureId: id
             },
             // relations: {
             //     ProductId : true
@@ -29,24 +29,35 @@ export class FeatureService {
     }
 
     createFeature = async (req: express.Request) => {
-        var repo = AppDataSource.getRepository(Feature);
-        const newfeature = repo.create(req.body)
-        const createdfeature = await repo.save(newfeature)
-        return createdfeature;
+        const entity = {
+            featureId: req.body.featureId,
+            Name: req.body.Name,
+            Description: req.body.Description,
+            ImageUrl: req.body.ImageUrl
+        }
+        const newfeature = await this._repo.create(entity);
+        const record = await this._repo.save(newfeature);
+        const dto = FeatureMapper.toDto(record)
+        return dto;
     }
     
     updateFeature = async (req: express.Request) => {
         const id = req.params.id;
-        var repo = AppDataSource.getRepository(Feature);
-        var records = await repo.findOne({
+       const record = await this._repo.findOne({
             where:{
-                id:id
+                featureId:id
             }
         })
-        records.Name = req.body.Name;
-        records.Description = req.body.Description;
-        records.ImageUrl = req.body.ImageUrl;
-        const updatedFeature = await repo.save(records);
+        if (req.body.Name != null) {
+            record.Name = req.body.Name;
+        }
+        if(req.body.Description!=null){
+            record.Description = req.body.Description;
+        }
+        if(req.body.ImageUrl!=null){
+            record.ImageUrl = req.body.ImageUrl;
+        }
+        const updatedFeature = await this._repo.save(record);
         return updatedFeature;
     }
 
@@ -55,7 +66,7 @@ export class FeatureService {
             var repo = AppDataSource.getRepository(Feature);
             var records = await repo.find({
                 where : {
-                        id: id
+                        featureId: id
                 },
                 // relations: {
                 //     ProductId : true
@@ -64,4 +75,6 @@ export class FeatureService {
             const deletedFeature = await repo.remove(records);
             return deletedFeature;
         }
-}
+}         
+     
+           

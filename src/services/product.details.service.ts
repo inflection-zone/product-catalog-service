@@ -19,7 +19,7 @@ export class ProductDetailsService {
         var repo = AppDataSource.getRepository(ProductDetails);
         var records = await repo.find({
             where : {
-                    id: id
+                productDetailsid: id
             },
             // relations: {
             //     ProductId : true
@@ -31,7 +31,19 @@ export class ProductDetailsService {
 
     createProductDetails = async (req: express.Request) => {
         var repo = AppDataSource.getRepository(ProductDetails);
-        const newProductDetails = repo.create(req.body)
+        const entity = {
+            productId : req.body.productId,
+            Information : req.body.Information,
+            AdditionalInformation : req.body.AdditionalInformation,
+            TechnicalDetails : req.body.TechnicalDetails,
+            PartNumber : req.body.PartNumber,
+            ModelNumber : req.body.ModelNumber,
+            CountryOfOrigin : req.body.CountryOfOrigin,
+            ItemWeight : parseInt(req.body.ItemWeight),
+            ItemDimensions : req.body.ItemDimensions,
+            PackItemCount : parseInt(req.body.PackItemCount),
+        }
+        const newProductDetails = repo.create(entity)
         const createdProductDetails = await repo.save(newProductDetails)
         return createdProductDetails;
     }
@@ -41,7 +53,7 @@ export class ProductDetailsService {
         var repo = AppDataSource.getRepository(ProductDetails);
         var records = await repo.findOne({
             where:{
-                id:id
+                productDetailsid:id
             }
         })
         records.ProductId = req.body.ProductId;
@@ -63,7 +75,7 @@ export class ProductDetailsService {
             var repo = AppDataSource.getRepository(ProductDetails);
             var records = await repo.find({
                 where : {
-                        id: id
+                    productDetailsid: id
                 },
                 // relations: {
                 //     ProductId : true
@@ -72,4 +84,5 @@ export class ProductDetailsService {
             const deletedProductDetails = await repo.remove(records);
             return deletedProductDetails;
         }
-}
+}       
+    

@@ -4,10 +4,10 @@ import { ResponseHandler } from "../common/response.handler";
 import { ApiError } from "../common/api.error";
 import { ErrorHandler } from "../common/error.handler";
 import { ProductFeatureValidator } from "../validators/product.feature.validator"; 
-import { IProductFeatureUpdateModel } from "../domain types/productfeature/product.feature.domain.type";
+import { IProductFeatureUpdateModel } from "../domain types/productfeature/product.feature.domain.entity";
 
 export class ProductFeatureController {
-    service: ProductFeatureService = null;
+    service: ProductFeatureService;
     constructor() {
         this.service = new ProductFeatureService(); 
     }
@@ -46,7 +46,7 @@ export class ProductFeatureController {
             const productFeature = await this.service.createProductFeature(req);  
             console.log(productFeature);
             if (productFeature === null) {
-                throw new ApiError("Unable to create productFeature", 400);
+                throw new ApiError(400,"Unable to create productFeature");
             }
             const Message = "Successfully created ProductFeature info";
             ResponseHandler.success(req, res, Message, 200, productFeature);
@@ -95,4 +95,6 @@ export class ProductFeatureController {
         };
         return model;
     }
-}
+}                 
+           
+   

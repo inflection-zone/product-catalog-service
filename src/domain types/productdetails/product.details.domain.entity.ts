@@ -1,5 +1,6 @@
-export interface ProductDetailsDto {
-    ProductId: string;
+import { uuid } from "../miscellaneous/system.types";
+export interface ProductDetailsDomainEntity {
+    ProductId: uuid;
     Information: string;
     AdditionalInformation: string;
     TechnicalDetails: string;
@@ -12,7 +13,7 @@ export interface ProductDetailsDto {
 }
 
 export interface IProductDetailsUpdateModel {
-    ProductId: string;
+    ProductId: uuid;
     Information?: string;
     AdditionalInformation?: string;
     TechnicalDetails?: string;
@@ -23,3 +24,5 @@ export interface IProductDetailsUpdateModel {
     ItemDimensions?: string;
     PackItemCount?: number;
 }
+
+  

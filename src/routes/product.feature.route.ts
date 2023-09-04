@@ -2,12 +2,13 @@
 
 import express from "express";
 import bodyParser from "body-parser";
-import { FeatureController } from "../controller/feature.controller";
+// import { FeatureController } from "../controller/feature.controller";
+import { ProductFeatureController } from "../controller/product.feature.controller";
 
 export const register = (app:express.Application)=>{
 const ProductfeatureRouter= express.Router();
 
-const controller = new FeatureController();
+const controller = new ProductFeatureController();
 
 
   ProductfeatureRouter.get("/all", controller.get); 
@@ -21,3 +22,4 @@ app.use(bodyParser.urlencoded({extended:true}))
 }
 
 
+ 

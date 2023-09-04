@@ -3,7 +3,7 @@ import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'ty
 export class ProductDetails{
 
     @PrimaryGeneratedColumn('uuid')
-    id: string;
+    productDetailsid: string;
     
     //@ManyToOne(() => Product) 
    // @JoinColumn({name: "ProductId"})
@@ -39,3 +39,5 @@ export class ProductDetails{
     PackItemCount: number
 
 }
+
+   

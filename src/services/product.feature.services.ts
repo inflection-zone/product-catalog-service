@@ -2,17 +2,13 @@ import express from "express";
 import { ProductFeatures } from "../database/models/product.feature.model";
 import { AppDataSource } from "../database/data-source";
 import { FeatureMapper } from "../database/mapper/feature.mapper";
+
 export class ProductFeatureService {
     constructor() { }
 
     Search = async () => {
         var repo = AppDataSource.getRepository(ProductFeatures);
-        var records = await repo.find({
-            relations: {
-               // ProductId : true,
-                FeatureId : true
-            }
-        });
+        var records = await repo.find({});
         return records;
     }
 
@@ -20,19 +16,22 @@ export class ProductFeatureService {
         var repo = AppDataSource.getRepository(ProductFeatures);
         var records = await repo.find({
             where : {
-                    id: id
+                productFeatureid: id
             },
-            relations: {
+            // relations: {
                // ProductId : true,
-                FeatureId :  true
-            }
+                // FeatureId :  true}
         });
         return records;
     }
 
     createProductFeature = async (req: express.Request) => {
         var repo = AppDataSource.getRepository(ProductFeatures);
-        const newProductFeature = repo.create(req.body)
+        const entity = {
+            FeatureId : req.body.FeatureId,
+            ProductId : req.body.ProductId
+        };
+            const newProductFeature = repo.create(entity)
         const createdProductFeature = await repo.save(newProductFeature)
         return createdProductFeature;
     }
@@ -42,7 +41,7 @@ export class ProductFeatureService {
         var repo = AppDataSource.getRepository(ProductFeatures);
         var records = await repo.findOne({
             where:{
-                id:id
+                productFeatureid:id
             }
         })
         records.ProductId = req.body.ProductId;
@@ -56,14 +55,16 @@ export class ProductFeatureService {
             var repo = AppDataSource.getRepository(ProductFeatures);
             var records = await repo.find({
                 where : {
-                        id: id
+                    productFeatureid: id
                 },
-                relations: {
+                // relations: {
                    // ProductId : true,
-                    FeatureId : true
-                }
+                    // FeatureId : true}
             });
             const deletedProductFeature = await repo.remove(records);
             return deletedProductFeature;
         }
-}
+}         
+          
+                
+          
